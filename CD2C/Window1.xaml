@@ -5,7 +5,7 @@
         xmlns:local="clr-namespace:DemoApp"
         WindowState="Maximized"
         SnapsToDevicePixels="True"
-		Title="Diagram Designer"        
+		Title="Class Diagram to Code Converter (CD2C)"        
 		Height="850" Width="1100">
 	
 
@@ -24,22 +24,6 @@
                     Content="Save"
                     Margin="8,0,3,0"
                     Command="{Binding SaveDiagramCommand}" />
-            <Button ToolTip="Ungroup/Group"
-                    Content="Ungroup/Group"
-                    Margin="8,0,3,0"
-                    Command="{Binding GroupCommand}" />
-            <Label Margin="30,0,3,0"
-                   VerticalAlignment="Center"
-                   Content="Saved Diagrams" />
-            <ComboBox Margin="8,0,3,0"
-                     Width="200"
-                     ToolTip="Saved Diagrams"
-                      SelectedItem="{Binding SavedDiagramId}"
-                     ItemsSource="{Binding SavedDiagrams}"/>
-            <Button ToolTip="Load Selected Diagram"
-                    Content="Load"
-                    Margin="8,0,3,0"
-                    Command="{Binding LoadDiagramCommand}" />
             <ProgressBar Margin="8,0,3,0"
                          Visibility="{Binding Path=IsBusy, Converter={x:Static s:BoolToVisibilityConverter.Instance}}"
                          IsIndeterminate="True"

@@ -25,7 +25,8 @@ namespace DiagramDesigner
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
             Uri imagePath = new Uri(value.ToString(), UriKind.RelativeOrAbsolute);
-            ImageSource source = new BitmapImage(imagePath);
+            //ImageSource source = new BitmapImage(imagePath);
+            ImageSource source = BitmapFrame.Create(imagePath);
             return source;
         }
 
