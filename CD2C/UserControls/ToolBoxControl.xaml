@@ -29,8 +29,8 @@
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
                             <WrapPanel Margin="0,5,0,5"
-                                       ItemHeight="50"
-                                       ItemWidth="50" />
+                                       ItemHeight="100"
+                                       ItemWidth="250" />
                         </ItemsPanelTemplate>
                     </ItemsControl.ItemsPanel>
                     <ItemsControl.ItemContainerStyle>
@@ -51,8 +51,8 @@
                         <DataTemplate>
                             <Image IsHitTestVisible="True"
                                    Stretch="Fill"
-                                   Width="50"
-                                   Height="50"
+                                   Width="{Binding Width}"
+                                   Height="{Binding Height}"
                                    Source="{Binding ImageUrl, Converter={x:Static s:ImageUrlConverter.Instance}}" />
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
