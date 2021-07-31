@@ -49,6 +49,7 @@
     <Compile Include="PersistDesignerItem.cs" />
     <Compile Include="PersitableItemBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ClassDesignerItem.cs" />
     <Compile Include="SettingsDesignerItem.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

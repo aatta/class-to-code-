@@ -411,7 +411,9 @@ namespace DemoApp
                 return typeof(SettingsDesignerItem);
             if (vmType is GroupingDesignerItemViewModel)
                 return typeof(GroupDesignerItem);
-            
+            if (vmType is ClassDesignerItemViewModel)
+                return typeof(ClassDesignerItem);
+
 
             throw new InvalidOperationException(string.Format("Unknown diagram type. Currently only {0} and {1} are supported",
                 typeof(PersistDesignerItem).AssemblyQualifiedName,
@@ -436,6 +438,11 @@ namespace DemoApp
             if (connectorDataItemType == typeof(GroupDesignerItem))
             {
                 dataItem = diagramViewModel.Items.OfType<GroupingDesignerItemViewModel>().Single(x => x.Id == conectorDataItemId);
+            }
+
+            if (connectorDataItemType == typeof(ClassDesignerItem))
+            {
+                dataItem = diagramViewModel.Items.OfType<ClassDesignerItemViewModel>().Single(x => x.Id == conectorDataItemId);
             }
             return dataItem;
         }
