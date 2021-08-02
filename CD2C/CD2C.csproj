@@ -68,6 +68,9 @@
     <Compile Include="Services\ApplicationServicesProvider.cs" />
     <Compile Include="Services\Implentation\WPFMessageBoxService.cs" />
     <Compile Include="Services\Implentation\WPFUIVisualizerService.cs" />
+    <Compile Include="TestWindow.xaml.cs">
+      <DependentUpon>TestWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\ToolBoxControl.xaml.cs">
       <DependentUpon>ToolBoxControl.xaml</DependentUpon>
     </Compile>
@@ -144,6 +147,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Resources\Styles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TestWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

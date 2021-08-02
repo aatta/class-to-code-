@@ -41,10 +41,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Connection.cs" />
+    <Compile Include="MethodModel.cs" />
+    <Compile Include="DataMemberModel.cs" />
     <Compile Include="DesignerItemBase.cs" />
     <Compile Include="DiagramItem.cs" />
     <Compile Include="GroupDesignerItem.cs" />
     <Compile Include="IDiagramItem.cs" />
+    <Compile Include="TypeEnum.cs" />
+    <Compile Include="ScopeEnum.cs" />
     <Compile Include="Orientation.cs" />
     <Compile Include="PersistDesignerItem.cs" />
     <Compile Include="PersitableItemBase.cs" />
