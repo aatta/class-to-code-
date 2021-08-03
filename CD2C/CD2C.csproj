@@ -60,6 +60,10 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Helpers\ComboHelper.cs" />
+    <Compile Include="Popups\PopupDataMember.xaml.cs">
+      <DependentUpon>PopupDataMember.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Popups\PopupWindow.xaml.cs">
       <DependentUpon>PopupWindow.xaml</DependentUpon>
     </Compile>
@@ -126,6 +130,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Popups\PopupDataMember.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Popups\PopupWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

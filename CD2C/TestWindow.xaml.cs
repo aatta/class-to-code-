@@ -22,5 +22,10 @@ namespace DemoApp
         {
             InitializeComponent();
         }
+
+        private void btnNewDataMember_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

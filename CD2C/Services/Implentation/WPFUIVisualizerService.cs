@@ -25,8 +25,33 @@ namespace DemoApp
 
             return false;
         }
+
+        /// <summary>
+        /// This method displays a modal dialog associated with the given key.
+        /// </summary>
+        /// <param name="dataContextForPopup">Object state to associate with the dialog</param>
+        /// <returns>True/False if UI is displayed.</returns>
+        public CD2C.Common.DataMemberModel ShowDataMemberPopup(object dataContextForPopup)
+        {
+            PopupDataMember win = new PopupDataMember();
+            win.DataContext = dataContextForPopup;
+            win.Owner = Application.Current.MainWindow;
+
+            CD2C.Common.DataMemberModel result = null;
+
+            if (win != null)
+            {
+                win.ShowDialog();
+
+                result = win.Result;
+
+
+            }
+
+            return result;
+        }
         #endregion
 
-      
+
     }
 }

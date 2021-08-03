@@ -1,10 +1,11 @@
-﻿<Window x:Class="DemoApp.PopupWindow"
+﻿<Window x:Class="DemoApp.PopupDataMember"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Alter values" 
-        SizeToContent="WidthAndHeight"
+        Title="New Data Member" 
+        
         WindowStartupLocation="CenterOwner"
-        x:Name="theView">
+        x:Name="theView"
+        Loaded="Window_Loaded">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -14,8 +15,28 @@
 
         <ContentControl Grid.Row="0"
                         HorizontalAlignment="Stretch"
-                        VerticalAlignment="Stretch"
-                        Content="{Binding ElementName=theView, Path=DataContext}" />
+                        VerticalAlignment="Stretch" >
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Label Grid.Row="0" Grid.Column="0" Content="Scope" HorizontalAlignment="Left" Margin="10,10,10,10" VerticalAlignment="Top"/>
+                <ComboBox Grid.Row="0" Grid.Column="1" x:Name="cmbScope" HorizontalAlignment="Left" Margin="10,10,10,10" VerticalAlignment="Top" Width="120" DisplayMemberPath="Text" SelectedValuePath="Id"/>
+
+                <Label Grid.Row="1" Grid.Column="0" Content="Type" HorizontalAlignment="Left" Margin="10,10,10,10" VerticalAlignment="Top"/>
+                <ComboBox Grid.Row="1" Grid.Column="1" x:Name="cmbType" HorizontalAlignment="Left" Margin="10,10,10,10" VerticalAlignment="Top" Width="120" DisplayMemberPath="Text" SelectedValuePath="Id"/>
+
+                <Label Grid.Row="2" Grid.Column="0" Content="Name" HorizontalAlignment="Left" Margin="10,10,10,10" VerticalAlignment="Top"/>
+                <TextBox Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Height="25"></TextBox>
+            </Grid>           
+        </ContentControl>
         <StackPanel Grid.Row="1"
                     Orientation="Horizontal"
                     HorizontalAlignment="Right">
