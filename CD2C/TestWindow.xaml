@@ -45,7 +45,7 @@
                 </Grid.RowDefinitions>
                 <Label x:Name="label" Content="Class Name: " HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
                 <TextBox x:Name="className" HorizontalAlignment="Left" Height="23" Margin="10,41,0,0" TextWrapping="Wrap" Text="Class1" VerticalAlignment="Top" Width="120"/>
-                <Button Grid.Row="1" x:Name="btnNewDataMember" Content="New Data Member" HorizontalAlignment="Center"  VerticalAlignment="Bottom" Width="120"/>
+                <Button Grid.Row="1" x:Name="btnNewDataMember" Content="New Data Member" HorizontalAlignment="Center"  VerticalAlignment="Bottom" Width="120" Click="btnNewDataMember_Click"/>
                 <Button Grid.Row="2" x:Name="btnNewMethod" Content="New Method" HorizontalAlignment="Center"  VerticalAlignment="Bottom" Width="75"/>
                 <Button Grid.Row="3" x:Name="btnGenerate" Content="Generate" HorizontalAlignment="Center"  VerticalAlignment="Bottom" Width="75"/>
 
