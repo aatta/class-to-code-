@@ -43,7 +43,7 @@
                 <DataGrid.InputBindings>
                     <MouseBinding Gesture="RightClick" 
                                 Command="{Binding ShowDataChangeWindowCommand}"
-                                CommandParameter="ClassName" />
+                                CommandParameter="ClassProps" />
                 </DataGrid.InputBindings>
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Methods" Binding="{Binding}" Width="*" />
@@ -60,7 +60,7 @@
                 <DataGrid.InputBindings>
                     <MouseBinding Gesture="RightClick" 
                                 Command="{Binding ShowDataChangeWindowCommand}"
-                                CommandParameter="ClassName" />
+                                CommandParameter="ClassProps" />
                 </DataGrid.InputBindings>
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="DataMembers" Binding="{Binding}" Width="*" />
@@ -105,7 +105,9 @@
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
                 <Label Grid.Column="0" Content="Data Members" FontWeight="Bold" HorizontalAlignment="Left"></Label>
-                <Button Grid.Column="1" Content="New Data Member" HorizontalAlignment="Right" Margin="0,0,10,0"/>
+                <Button Grid.Column="1" Content="New Data Member" HorizontalAlignment="Right" Margin="0,0,10,0"
+                        Command="{Binding Command}"
+                        CommandParameter="AddDataMember"/>
             </Grid>
             <DataGrid Grid.Row="2" Margin="5,10,10,10" AutoGenerateColumns="False">
                 <DataGrid.Columns>
@@ -131,6 +133,27 @@
                     <DataGridTextColumn Header="Input Parameters" Binding="{Binding InputParameters, Converter={conv:DictionaryConverter}}" Width="150" />
                 </DataGrid.Columns>
             </DataGrid>
+        </Grid>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type local:DataMemberDesignerItemData}">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Label Grid.Row="0" Grid.Column="0" Content="Scope" HorizontalAlignment="Left" Margin="10,10,10,10" VerticalAlignment="Top"/>
+            <ComboBox Grid.Row="0" Grid.Column="1" x:Name="cmbScope" HorizontalAlignment="Left" Margin="10,10,10,10" VerticalAlignment="Top" Width="120" DisplayMemberPath="Text" SelectedValuePath="Id"/>
+
+            <Label Grid.Row="1" Grid.Column="0" Content="Type" HorizontalAlignment="Left" Margin="10,10,10,10" VerticalAlignment="Top"/>
+            <ComboBox Grid.Row="1" Grid.Column="1" x:Name="cmbType" HorizontalAlignment="Left" Margin="10,10,10,10" VerticalAlignment="Top" Width="120" DisplayMemberPath="Text" SelectedValuePath="Id"/>
+
+            <Label Grid.Row="2" Grid.Column="0" Content="Name" HorizontalAlignment="Left" Margin="10,10,10,10" VerticalAlignment="Top"/>
+            <TextBox x:Name="txtName" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Height="25"></TextBox>
         </Grid>
     </DataTemplate>
 

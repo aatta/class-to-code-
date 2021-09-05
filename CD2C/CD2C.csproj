@@ -85,6 +85,7 @@
     <Compile Include="UserControls\ToolBoxControl.xaml.cs">
       <DependentUpon>ToolBoxControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\DataMemberDesignerItemData.cs" />
     <Compile Include="ViewModels\GroupingDesignerItemViewModel.cs" />
     <Compile Include="ViewModels\ClassDesignerItemData.cs" />
     <Compile Include="ViewModels\ClassDesignerItemViewModel.cs" />

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
+using System.Windows.Input;
 using CD2C.Common;
 using DiagramDesigner;
 
@@ -14,19 +15,37 @@ namespace DemoApp
     /// the popup to be cancelled without applying any changes to the calling ViewModel
     /// whos data will be updated if the PopupWindow.xaml window is closed successfully
     /// </summary>
-    public class ClassDesignerItemData : INPCBase
+    public class ClassDesignerItemData : INPCBase, ISupportValidation
     {
         private string _className = null;
         private ObservableCollection<MethodModel> _methods = null;
         private ObservableCollection<DataMemberModel> _dataMembers = null;
+        private ICommand _command;
 
 
 
-        public ClassDesignerItemData(string className, ObservableCollection<MethodModel> methods, ObservableCollection<DataMemberModel> dataMembers)
+        public ClassDesignerItemData(string className, ObservableCollection<MethodModel> methods, ObservableCollection<DataMemberModel> dataMembers, ICommand command)
         {
             _className = className;
             _methods = methods;
             _dataMembers = dataMembers;
+            _command = command;
+        }
+
+        public ICommand Command
+        {
+            get
+            {
+                return _command;
+            }
+            set
+            {
+                if (_command != value)
+                {
+                    _command = value;
+                    NotifyChanged("Command");
+                }
+            }
         }
 
         public string ClassName
@@ -76,6 +95,16 @@ namespace DemoApp
                     NotifyChanged("DataMembers");
                 }
             }
+        }
+
+        public bool Validate()
+        {
+            if (string.IsNullOrEmpty(this.ClassName))
+            {
+                return false;
+            }
+
+            return true;
         }
     }
 }
