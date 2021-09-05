@@ -1,5 +1,5 @@
 ﻿using CD2C.Common;
-using CD2C.Common.Helpers;
+using CD2C.Helpers.Common;
 using System;
 using System.Collections.Generic;
 using System.Windows;
@@ -9,39 +9,28 @@ namespace DemoApp
     /// <summary>
     /// Interaction logic for PopupWindow.xaml
     /// </summary>
-    public partial class PopupDataMember : Window
+    public partial class PopupInputParameter : Window
     {
-        List<ComboData> _scopeData = null;
         List<ComboData> _typeData = null;
 
-        public CD2C.Common.DataMemberModel Result = null;
+        public KeyValuePair<string, TypeEnum> Result;
 
-        public PopupDataMember()
+        public PopupInputParameter()
         {
             InitializeComponent();
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            _scopeData = ComboHelper.FromEnum(typeof(CD2C.Common.ScopeEnum));
             _typeData = ComboHelper.FromEnum(typeof(CD2C.Common.TypeEnum));
 
             _typeData.ForEach(t => t.Text = t.Text.Replace("Type", string.Empty));
 
-            cmbScope.ItemsSource = _scopeData;
             cmbType.ItemsSource = _typeData;
         }
 
         private void Ok_Click(object sender, RoutedEventArgs e)
         {
-
-            if (cmbScope.SelectedItem == null)
-            {
-                MessageBox.Show("Scope not selected.");
-
-                return;
-            }
-
             if (cmbType.SelectedItem == null)
             {
                 MessageBox.Show("Type not selected.");
@@ -57,15 +46,9 @@ namespace DemoApp
             }
 
             var name = txtName.Text;
-            var scope = (ScopeEnum)Enum.Parse(typeof(ScopeEnum), ((int)cmbScope.SelectedValue).ToString());
             var type = (TypeEnum)Enum.Parse(typeof(TypeEnum), ((int)cmbType.SelectedValue).ToString());
 
-            this.Result = new CD2C.Common.DataMemberModel
-            {
-                Name = name,
-                Scope = scope,
-                Type = type
-            };
+            this.Result = new KeyValuePair<string, TypeEnum>(name, type);
 
             this.DialogResult = true;
             this.Close();

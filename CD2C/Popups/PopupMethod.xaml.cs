@@ -1,5 +1,5 @@
 ﻿using CD2C.Common;
-using CD2C.Common.Helpers;
+using CD2C.Helpers.Common;
 using System;
 using System.Collections.Generic;
 using System.Windows;
@@ -9,14 +9,15 @@ namespace DemoApp
     /// <summary>
     /// Interaction logic for PopupWindow.xaml
     /// </summary>
-    public partial class PopupDataMember : Window
+    public partial class PopupMethod : Window
     {
         List<ComboData> _scopeData = null;
         List<ComboData> _typeData = null;
 
-        public CD2C.Common.DataMemberModel Result = null;
+        public CD2C.Common.MethodModel Result = null;
+        public Dictionary<string, TypeEnum> inputParameters = new Dictionary<string, TypeEnum>();
 
-        public PopupDataMember()
+        public PopupMethod()
         {
             InitializeComponent();
         }
@@ -60,17 +61,37 @@ namespace DemoApp
             var scope = (ScopeEnum)Enum.Parse(typeof(ScopeEnum), ((int)cmbScope.SelectedValue).ToString());
             var type = (TypeEnum)Enum.Parse(typeof(TypeEnum), ((int)cmbType.SelectedValue).ToString());
 
-            this.Result = new CD2C.Common.DataMemberModel
+            this.Result = new CD2C.Common.MethodModel
             {
                 Name = name,
                 Scope = scope,
-                Type = type
+                ReturnType = type,
+                InputParameters = inputParameters
             };
 
             this.DialogResult = true;
             this.Close();
         }
 
+        private void AddNewParameter_Click(object sender, RoutedEventArgs e)
+        {
+            var visualizerService = new WPFUIVisualizerService();
 
+            var result = visualizerService.ShowInputParameterPopup(this);
+
+            if (!string.IsNullOrEmpty(result.Key) && inputParameters.ContainsKey(result.Key))
+            {
+                MessageBox.Show("Name already exists.");
+
+                return;
+            }
+
+            if (!string.IsNullOrEmpty(result.Key))
+            {
+                inputParameters.Add(result.Key, result.Value);
+
+                dgInputParameters.Items.Add(result);
+            }
+        }
     }
 }

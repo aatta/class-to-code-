@@ -8,8 +8,8 @@
     <ProjectGuid>{8CA63B86-3402-4DB8-AD90-1BF131352896}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DemoApp</RootNamespace>
-    <AssemblyName>DemoApp</AssemblyName>
+    <RootNamespace>CD2C</RootNamespace>
+    <AssemblyName>CD2C</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
@@ -60,9 +60,16 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Helpers\ComboHelper.cs" />
+    <Compile Include="Converters\DictionaryConverter.cs" />
+    <Compile Include="Converters\TypeNameConverter.cs" />
     <Compile Include="Popups\PopupDataMember.xaml.cs">
       <DependentUpon>PopupDataMember.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Popups\PopupInputParameter.xaml.cs">
+      <DependentUpon>PopupInputParameter.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Popups\PopupMethod.xaml.cs">
+      <DependentUpon>PopupMethod.xaml</DependentUpon>
     </Compile>
     <Compile Include="Popups\PopupWindow.xaml.cs">
       <DependentUpon>PopupWindow.xaml</DependentUpon>
@@ -131,6 +138,14 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="Popups\PopupDataMember.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Popups\PopupInputParameter.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Popups\PopupMethod.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

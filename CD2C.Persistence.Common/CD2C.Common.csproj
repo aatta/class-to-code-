@@ -8,8 +8,8 @@
     <ProjectGuid>{91AD5A26-30A4-438C-B4F0-D0DCF92140A9}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DemoApp.Persistence.Common</RootNamespace>
-    <AssemblyName>DemoApp.Persistence.Common</AssemblyName>
+    <RootNamespace>CD2C.Common</RootNamespace>
+    <AssemblyName>CD2C.Common</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -41,14 +41,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Connection.cs" />
-    <Compile Include="MethodModel.cs" />
-    <Compile Include="DataMemberModel.cs" />
     <Compile Include="DesignerItemBase.cs" />
     <Compile Include="DiagramItem.cs" />
     <Compile Include="GroupDesignerItem.cs" />
+    <Compile Include="Helpers\CodeGenerator.cs" />
+    <Compile Include="Helpers\ComboHelper.cs" />
     <Compile Include="IDiagramItem.cs" />
-    <Compile Include="TypeEnum.cs" />
-    <Compile Include="ScopeEnum.cs" />
+    <Compile Include="Model\DataMemberModel.cs" />
+    <Compile Include="Model\MethodModel.cs" />
+    <Compile Include="Model\ScopeEnum.cs" />
+    <Compile Include="Model\TypeEnum.cs" />
     <Compile Include="Orientation.cs" />
     <Compile Include="PersistDesignerItem.cs" />
     <Compile Include="PersitableItemBase.cs" />
