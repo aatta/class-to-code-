@@ -4,7 +4,8 @@ using System.Linq;
 using System.Text;
 using DiagramDesigner;
 using System.Windows.Input;
-
+using CD2C.Common;
+using System.Collections.ObjectModel;
 
 namespace DemoApp
 {
@@ -12,20 +13,24 @@ namespace DemoApp
     {
         private IUIVisualizerService visualiserService;
 
-        public ClassDesignerItemViewModel(int id, IDiagramViewModel parent, double left, double top, string setting1)
+        public ClassDesignerItemViewModel(int id, IDiagramViewModel parent, double left, double top, string className, ObservableCollection<MethodModel> methods, ObservableCollection<DataMemberModel> dataMembers)
             : base(id, parent, left, top)
         {
 
-            this.Setting1 = setting1;
+            ClassName = className;
+            Methods = methods;
+            DataMembers = dataMembers;
 
             Init();
         }
 
-        public ClassDesignerItemViewModel(int id, IDiagramViewModel parent, double left, double top, double itemWidth, double itemHeight, string setting1)
+        public ClassDesignerItemViewModel(int id, IDiagramViewModel parent, double left, double top, double itemWidth, double itemHeight, string className, ObservableCollection<MethodModel> methods, ObservableCollection<DataMemberModel> dataMembers)
              : base(id, parent, left, top, itemWidth, itemHeight)
         {
 
-            this.Setting1 = setting1;
+            ClassName = className;
+            Methods = methods;
+            DataMembers = dataMembers;
             Init();
         }
 
@@ -34,18 +39,69 @@ namespace DemoApp
             Init();
         }
 
-        public String Setting1 { get; set; }
+        private string _className = null;
+        private ObservableCollection<MethodModel> _methods = null;
+        private ObservableCollection<DataMemberModel> _dataMembers = null;
 
-        public List<string> Methods { get; set; }
+        public string ClassName
+        {
+            get
+            {
+                return _className;
+            }
+            set
+            {
+                if (_className != value)
+                {
+                    _className = value;
+                    NotifyChanged("ClassName");
+                }
+            }
+        }
+
+
+        public ObservableCollection<MethodModel> Methods
+        {
+            get
+            {
+                return _methods;
+            }
+            set
+            {
+                if (_methods != value)
+                {
+                    _methods = value;
+                    NotifyChanged("Methods");
+                }
+            }
+        }
+
+        public ObservableCollection<DataMemberModel> DataMembers
+        {
+            get
+            {
+                return _dataMembers;
+            }
+            set
+            {
+                if (_dataMembers != value)
+                {
+                    _dataMembers = value;
+                    NotifyChanged("DataMembers");
+                }
+            }
+        }
 
         public ICommand ShowDataChangeWindowCommand { get; private set; }
 
         public void ExecuteShowDataChangeWindowCommand(object parameter)
         {
-            ClassDesignerItemData data = new ClassDesignerItemData(Setting1);
+            ClassDesignerItemData data = new ClassDesignerItemData(this.ClassName, this.Methods, this.DataMembers);
             if (visualiserService.ShowDialog(data) == true)
             {
-                this.Setting1 = data.Setting1;
+                this.ClassName = data.ClassName;
+                this.Methods = data.Methods;
+                this.DataMembers = data.DataMembers;
             }
         }
 
@@ -55,15 +111,30 @@ namespace DemoApp
             ShowDataChangeWindowCommand = new SimpleCommand(ExecuteShowDataChangeWindowCommand);
             this.ShowConnectors = false;
 
-            this.ItemHeight = 200;
+            this.ItemHeight = 450;
             this.ItemWidth = 150;
 
-            Methods = new List<string>();
-
-            for (int i = 1; i <= 10; i++)
+            if (string.IsNullOrEmpty(ClassName))
             {
-                Methods.Add(string.Format("Method{0}", i));
+                ClassName = "Class";
             }
+
+            if (Methods == null)
+            {
+                Methods = new ObservableCollection<MethodModel>();
+            }
+
+            if (DataMembers == null)
+            {
+                DataMembers = new ObservableCollection<DataMemberModel>();
+            }
+
+            //Methods = new List<MethodModel>();
+
+            //for (int i = 1; i <= 10; i++)
+            //{
+            //    Methods.Add(string.Format("Method{0}", i));
+            //}
         }
     }
 }

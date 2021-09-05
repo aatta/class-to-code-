@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
+using CD2C.Common;
 using DiagramDesigner;
 
 namespace DemoApp
@@ -14,28 +16,64 @@ namespace DemoApp
     /// </summary>
     public class ClassDesignerItemData : INPCBase
     {
-        private string setting1 = "";
+        private string _className = null;
+        private ObservableCollection<MethodModel> _methods = null;
+        private ObservableCollection<DataMemberModel> _dataMembers = null;
 
-        
 
-        public ClassDesignerItemData(string currentSetting1)
+
+        public ClassDesignerItemData(string className, ObservableCollection<MethodModel> methods, ObservableCollection<DataMemberModel> dataMembers)
         {
-            setting1 = currentSetting1;
+            _className = className;
+            _methods = methods;
+            _dataMembers = dataMembers;
         }
 
-
-        public string Setting1
+        public string ClassName
         {
             get
             {
-                return setting1;
+                return _className;
             }
             set
             {
-                if (setting1 != value)
+                if (_className != value)
                 {
-                    setting1 = value;
-                    NotifyChanged("Setting1");
+                    _className = value;
+                    NotifyChanged("ClassName");
+                }
+            }
+        }
+
+
+        public ObservableCollection<MethodModel> Methods
+        {
+            get
+            {
+                return _methods;
+            }
+            set
+            {
+                if (_methods != value)
+                {
+                    _methods = value;
+                    NotifyChanged("Methods");
+                }
+            }
+        }
+
+        public ObservableCollection<DataMemberModel> DataMembers
+        {
+            get
+            {
+                return _dataMembers;
+            }
+            set
+            {
+                if (_dataMembers != value)
+                {
+                    _dataMembers = value;
+                    NotifyChanged("DataMembers");
                 }
             }
         }

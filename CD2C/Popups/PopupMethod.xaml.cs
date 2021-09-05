@@ -1,5 +1,5 @@
 ﻿using CD2C.Common;
-using CD2C.Helpers.Common;
+using CD2C.Common.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Windows;

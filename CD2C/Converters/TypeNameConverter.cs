@@ -6,12 +6,13 @@ using System.Linq;
 using System.Text;
 using System.Windows;
 using System.Windows.Data;
+using System.Windows.Markup;
 
 namespace DemoApp.Converters
 {
     /// <summary>
     [ValueConversion(typeof(TypeEnum), typeof(string))]
-    public class TypeNameConverter : IValueConverter
+    public class TypeNameConverter : MarkupExtension, IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
@@ -28,6 +29,11 @@ namespace DemoApp.Converters
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             return DependencyProperty.UnsetValue;
+        }
+
+        public override object ProvideValue(System.IServiceProvider serviceProvider)
+        {
+            return this;
         }
     }
 }
