@@ -32,6 +32,22 @@
                    BorderBrush="Gray" IsHitTestVisible="False">
                 Class
             </Label>-->
+            <DataGrid HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" RowHeight="20" ColumnWidth="*"
+                Background="LightGray"  
+                AutoGenerateColumns="False" BorderBrush="Gray" BorderThickness="2" IsReadOnly="True"
+                ItemsSource="{Binding DataMembers}" Height="200" Width="150" RowHeaderWidth="0" 
+                ColumnHeaderHeight="25" CanUserReorderColumns="False"
+                EnableRowVirtualization="false" EnableColumnVirtualization="false" 
+                Grid.Row="2" IsHitTestVisible="False">
+                <!--<DataGrid.InputBindings>
+                    <MouseBinding Gesture="RightClick"
+                                Command="{Binding ShowDataChangeWindowCommand}"
+                                CommandParameter="ClassProps" />
+                </DataGrid.InputBindings>-->
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Data Members" Binding="{Binding Name}" Width="*" />
+                </DataGrid.Columns>
+            </DataGrid>
             <DataGrid HorizontalAlignment="Left" Margin="0,0,0,0"   
                 Name="methods" VerticalAlignment="Top" RowHeight="20" ColumnWidth="*"
                 Background="LightGray"  
@@ -40,30 +56,13 @@
                 ColumnHeaderHeight="25" CanUserReorderColumns="False"
                 EnableRowVirtualization="false" EnableColumnVirtualization="false" 
                 Grid.Row="1" IsHitTestVisible="False">
-                <DataGrid.InputBindings>
+                <!--<DataGrid.InputBindings>
                     <MouseBinding Gesture="RightClick" 
                                 Command="{Binding ShowDataChangeWindowCommand}"
                                 CommandParameter="ClassProps" />
-                </DataGrid.InputBindings>
+                </DataGrid.InputBindings>-->
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Methods" Binding="{Binding}" Width="*" />
-                </DataGrid.Columns>
-            </DataGrid>
-            <DataGrid HorizontalAlignment="Left" Margin="0,0,0,0"   
-                Name="dataMembers" VerticalAlignment="Top" RowHeight="20" ColumnWidth="*"
-                Background="LightGray"  
-                AutoGenerateColumns="False" BorderBrush="Gray" BorderThickness="2" IsReadOnly="True"
-                ItemsSource="{Binding DataMembers}" Height="200" Width="150" RowHeaderWidth="0" 
-                ColumnHeaderHeight="25" CanUserReorderColumns="False"
-                EnableRowVirtualization="false" EnableColumnVirtualization="false" 
-                Grid.Row="2" IsHitTestVisible="False">
-                <DataGrid.InputBindings>
-                    <MouseBinding Gesture="RightClick" 
-                                Command="{Binding ShowDataChangeWindowCommand}"
-                                CommandParameter="ClassProps" />
-                </DataGrid.InputBindings>
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="DataMembers" Binding="{Binding}" Width="*" />
+                    <DataGridTextColumn Header="Methods" Binding="{Binding Name}" Width="*" />
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>
@@ -123,7 +122,9 @@
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
                 <Label Grid.Column="0" Content="Methods" FontWeight="Bold" HorizontalAlignment="Left"></Label>
-                <Button Grid.Column="1" Content="New Method" HorizontalAlignment="Right" Width="75" Margin="0,0,10,0"/>
+                <Button Grid.Column="1" Content="New Method" HorizontalAlignment="Right" Width="75" Margin="0,0,10,0"
+                        Command="{Binding Command}"
+                        CommandParameter="AddMethod"/>
             </Grid>
             <DataGrid Grid.Row="4" Margin="5,10,10,10" AutoGenerateColumns="False">
                 <DataGrid.Columns>
@@ -147,13 +148,49 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
             <Label Grid.Row="0" Grid.Column="0" Content="Scope" HorizontalAlignment="Left" Margin="10,10,10,10" VerticalAlignment="Top"/>
-            <ComboBox Grid.Row="0" Grid.Column="1" x:Name="cmbScope" HorizontalAlignment="Left" Margin="10,10,10,10" VerticalAlignment="Top" Width="120" DisplayMemberPath="Text" SelectedValuePath="Id"/>
+            <ComboBox Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" Margin="10,10,10,10" VerticalAlignment="Top" Width="120" ItemsSource="{Binding ScopeData}" DisplayMemberPath="Text" SelectedValuePath="Id" SelectedValue="{Binding DataMemberModel.Scope}"/>
 
             <Label Grid.Row="1" Grid.Column="0" Content="Type" HorizontalAlignment="Left" Margin="10,10,10,10" VerticalAlignment="Top"/>
-            <ComboBox Grid.Row="1" Grid.Column="1" x:Name="cmbType" HorizontalAlignment="Left" Margin="10,10,10,10" VerticalAlignment="Top" Width="120" DisplayMemberPath="Text" SelectedValuePath="Id"/>
+            <ComboBox Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" Margin="10,10,10,10" VerticalAlignment="Top" Width="120" ItemsSource="{Binding TypeData}" DisplayMemberPath="Text" SelectedValuePath="Id" SelectedValue="{Binding DataMemberModel.Type}"/>
 
             <Label Grid.Row="2" Grid.Column="0" Content="Name" HorizontalAlignment="Left" Margin="10,10,10,10" VerticalAlignment="Top"/>
-            <TextBox x:Name="txtName" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Height="25"></TextBox>
+            <TextBox Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Height="25" Text="{Binding DataMemberModel.Name}"></TextBox>
+        </Grid>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type local:MethodDesignerItemData}">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Label Grid.Row="0" Grid.Column="0" Content="Scope" HorizontalAlignment="Left" Margin="10,10,10,10" VerticalAlignment="Top"/>
+            <ComboBox Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" Margin="10,10,10,10" VerticalAlignment="Top" Width="120" ItemsSource="{Binding ScopeData}" DisplayMemberPath="Text" SelectedValuePath="Id" SelectedValue="{Binding MethodModel.Scope}"/>
+
+            <Label Grid.Row="1" Grid.Column="0" Content="Return Type" HorizontalAlignment="Left" Margin="10,10,10,10" VerticalAlignment="Top"/>
+            <ComboBox Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" Margin="10,10,10,10" VerticalAlignment="Top" Width="120" ItemsSource="{Binding TypeData}" DisplayMemberPath="Text" SelectedValuePath="Id" SelectedValue="{Binding MethodModel.ReturnType}"/>
+
+            <Label Grid.Row="2" Grid.Column="0" Content="Name" HorizontalAlignment="Left" Margin="10,10,10,10" VerticalAlignment="Top"/>
+            <TextBox Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,10,10" Width="120" Height="25" Text="{Binding MethodModel.Name}"></TextBox>
+            <Grid Grid.Row="3" Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Button Grid.Row="0" Content="Add New Parameter" HorizontalAlignment="Right" Margin="0,0,10,0" VerticalAlignment="Bottom" Width="130"/>
+                <DataGrid Grid.Row="1" Margin="10,10,10,10" AutoGenerateColumns="False" ItemsSource="{Binding MethodModel.InputParameters}">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Type" Binding="{Binding Value, Converter={conv:TypeNameConverter}}" Width="150" />
+                        <DataGridTextColumn Header="Name" Binding="{Binding Key}" Width="200" />
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
         </Grid>
     </DataTemplate>
 

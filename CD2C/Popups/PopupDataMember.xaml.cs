@@ -11,8 +11,8 @@ namespace DemoApp
     /// </summary>
     public partial class PopupDataMember : Window
     {
-        List<ComboData> _scopeData = null;
-        List<ComboData> _typeData = null;
+        List<ComboData<ScopeEnum>> _scopeData = null;
+        List<ComboData<TypeEnum>> _typeData = null;
 
         public CD2C.Common.DataMemberModel Result = null;
 
@@ -23,8 +23,8 @@ namespace DemoApp
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            _scopeData = ComboHelper.FromEnum(typeof(CD2C.Common.ScopeEnum));
-            _typeData = ComboHelper.FromEnum(typeof(CD2C.Common.TypeEnum));
+            _scopeData = ComboHelper.FromEnum<ScopeEnum>();
+            _typeData = ComboHelper.FromEnum<TypeEnum>();
 
             _typeData.ForEach(t => t.Text = t.Text.Replace("Type", string.Empty));
 

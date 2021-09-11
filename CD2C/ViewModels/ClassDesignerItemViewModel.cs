@@ -116,6 +116,16 @@ namespace DemoApp
                         }
                         break;
                     }
+                case "AddMethod":
+                    {
+                        MethodModel method = new MethodModel();
+                        MethodDesignerItemData data = new MethodDesignerItemData(method);
+                        if (visualiserService.ShowDialog(data) == true)
+                        {
+                            this.Methods.Add(method);
+                        }
+                        break;
+                    }
                 case "ClassProps":
                 default:
                     {

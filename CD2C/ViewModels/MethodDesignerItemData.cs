@@ -16,15 +16,15 @@ namespace DemoApp
     /// the popup to be cancelled without applying any changes to the calling ViewModel
     /// whos data will be updated if the PopupWindow.xaml window is closed successfully
     /// </summary>
-    public class DataMemberDesignerItemData : INPCBase, ISupportValidation
+    public class MethodDesignerItemData : INPCBase, ISupportValidation
     {
-        private DataMemberModel _dataMemberModel = null;
+        private MethodModel _methodModel = null;
         List<ComboData<ScopeEnum>> _scopeData = null;
         List<ComboData<TypeEnum>> _typeData = null;
 
-        public DataMemberDesignerItemData(DataMemberModel dataMemberModel)
+        public MethodDesignerItemData(MethodModel dataMemberModel)
         {
-            _dataMemberModel = dataMemberModel;
+            _methodModel = dataMemberModel;
 
             _scopeData = ComboHelper.FromEnum<ScopeEnum>();
             _typeData = ComboHelper.FromEnum<TypeEnum>();
@@ -35,17 +35,17 @@ namespace DemoApp
         public List<ComboData<ScopeEnum>> ScopeData { get { return _scopeData; } }
         public List<ComboData<TypeEnum>> TypeData { get { return _typeData; } }
 
-        public DataMemberModel DataMemberModel
+        public MethodModel MethodModel
         {
             get
             {
-                return _dataMemberModel;
+                return _methodModel;
             }
             set
             {
-                if (_dataMemberModel != value)
+                if (_methodModel != value)
                 {
-                    _dataMemberModel = value;
+                    _methodModel = value;
                     NotifyChanged("DataMemberModel");
                 }
             }
@@ -53,7 +53,7 @@ namespace DemoApp
 
         public bool Validate()
         {
-            if (string.IsNullOrEmpty(this._dataMemberModel.Name))
+            if (string.IsNullOrEmpty(this._methodModel.Name))
             {
                 return false;
             }

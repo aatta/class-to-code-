@@ -11,8 +11,8 @@ namespace DemoApp
     /// </summary>
     public partial class PopupMethod : Window
     {
-        List<ComboData> _scopeData = null;
-        List<ComboData> _typeData = null;
+        //List<ComboData> _scopeData = null;
+        //List<ComboData> _typeData = null;
 
         public CD2C.Common.MethodModel Result = null;
         public Dictionary<string, TypeEnum> inputParameters = new Dictionary<string, TypeEnum>();
@@ -24,13 +24,13 @@ namespace DemoApp
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            _scopeData = ComboHelper.FromEnum(typeof(CD2C.Common.ScopeEnum));
-            _typeData = ComboHelper.FromEnum(typeof(CD2C.Common.TypeEnum));
+            //_scopeData = ComboHelper.FromEnum(typeof(CD2C.Common.ScopeEnum));
+            //_typeData = ComboHelper.FromEnum(typeof(CD2C.Common.TypeEnum));
 
-            _typeData.ForEach(t => t.Text = t.Text.Replace("Type", string.Empty));
+            //_typeData.ForEach(t => t.Text = t.Text.Replace("Type", string.Empty));
 
-            cmbScope.ItemsSource = _scopeData;
-            cmbType.ItemsSource = _typeData;
+            //cmbScope.ItemsSource = _scopeData;
+            //cmbType.ItemsSource = _typeData;
         }
 
         private void Ok_Click(object sender, RoutedEventArgs e)
