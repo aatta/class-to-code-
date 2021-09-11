@@ -89,6 +89,7 @@
     <Compile Include="ViewModels\GroupingDesignerItemViewModel.cs" />
     <Compile Include="ViewModels\ClassDesignerItemData.cs" />
     <Compile Include="ViewModels\ClassDesignerItemViewModel.cs" />
+    <Compile Include="ViewModels\ISupportValidation.cs" />
     <Compile Include="ViewModels\ToolBoxViewModel.cs" />
     <Compile Include="ViewModels\SettingsDesignerItemData.cs" />
     <Compile Include="ViewModels\ISupportDataChanges.cs" />
