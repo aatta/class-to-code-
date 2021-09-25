@@ -96,48 +96,12 @@ namespace DemoApp
 
         public void ExecuteShowDataChangeWindowCommand(object parameter)
         {
-            string strParams = null;
-
-            if (parameter != null)
+            ClassDesignerItemData data = new ClassDesignerItemData(this.ClassName, this.Methods, this.DataMembers);
+            if (visualiserService.ShowDialog(data) == true)
             {
-                strParams = parameter.ToString();
-            }
-
-            switch (strParams)
-            {
-                
-                case "AddDataMember":
-                    {
-                        DataMemberModel dataMember = new DataMemberModel();
-                        DataMemberDesignerItemData data = new DataMemberDesignerItemData(dataMember);
-                        if (visualiserService.ShowDialog(data) == true)
-                        {
-                            this.DataMembers.Add(dataMember);
-                        }
-                        break;
-                    }
-                case "AddMethod":
-                    {
-                        MethodModel method = new MethodModel();
-                        MethodDesignerItemData data = new MethodDesignerItemData(method);
-                        if (visualiserService.ShowDialog(data) == true)
-                        {
-                            this.Methods.Add(method);
-                        }
-                        break;
-                    }
-                case "ClassProps":
-                default:
-                    {
-                        ClassDesignerItemData data = new ClassDesignerItemData(this.ClassName, this.Methods, this.DataMembers, this.ShowDataChangeWindowCommand);
-                        if (visualiserService.ShowDialog(data) == true)
-                        {
-                            this.ClassName = data.ClassName;
-                            this.Methods = data.Methods;
-                            this.DataMembers = data.DataMembers;
-                        }
-                        break;
-                    }
+                this.ClassName = data.ClassName;
+                this.Methods = data.Methods;
+                this.DataMembers = data.DataMembers;
             }
         }
 

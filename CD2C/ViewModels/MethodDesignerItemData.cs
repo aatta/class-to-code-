@@ -16,24 +16,27 @@ namespace DemoApp
     /// the popup to be cancelled without applying any changes to the calling ViewModel
     /// whos data will be updated if the PopupWindow.xaml window is closed successfully
     /// </summary>
-    public class MethodDesignerItemData : INPCBase, ISupportValidation
+    public class MethodDesignerItemData : INPCBase, ISupportDataChanges, ISupportValidation
     {
-        private MethodModel _methodModel = null;
-        List<ComboData<ScopeEnum>> _scopeData = null;
-        List<ComboData<TypeEnum>> _typeData = null;
+        private readonly MethodModel _methodModel = null;
+        private readonly ICommand _command = null;
+        private readonly IUIVisualizerService visualiserService;
 
         public MethodDesignerItemData(MethodModel dataMemberModel)
         {
             _methodModel = dataMemberModel;
 
-            _scopeData = ComboHelper.FromEnum<ScopeEnum>();
-            _typeData = ComboHelper.FromEnum<TypeEnum>();
+            ScopeData = ComboHelper.FromEnum<ScopeEnum>();
+            TypeData = ComboHelper.FromEnum<TypeEnum>();
 
-            _typeData.ForEach(t => t.Text = t.Text.Replace("Type", string.Empty));
+            TypeData.ForEach(t => t.Text = t.Text.Replace("Type", string.Empty));
+
+            _command = new SimpleCommand(ExecuteShowDataChangeWindowCommand);
+            visualiserService = ApplicationServicesProvider.Instance.Provider.VisualizerService;
         }
 
-        public List<ComboData<ScopeEnum>> ScopeData { get { return _scopeData; } }
-        public List<ComboData<TypeEnum>> TypeData { get { return _typeData; } }
+        public List<ComboData<ScopeEnum>> ScopeData { get; } = null;
+        public List<ComboData<TypeEnum>> TypeData { get; } = null;
 
         public MethodModel MethodModel
         {
@@ -41,13 +44,23 @@ namespace DemoApp
             {
                 return _methodModel;
             }
-            set
+        }
+
+        public ICommand ShowDataChangeWindowCommand
+        {
+            get
             {
-                if (_methodModel != value)
-                {
-                    _methodModel = value;
-                    NotifyChanged("DataMemberModel");
-                }
+                return _command;
+            }
+        }
+
+        public void ExecuteShowDataChangeWindowCommand(object parameter)
+        {
+            InputParameterModel inputParameter = new InputParameterModel();
+            InputParameterDesignerItemData data = new InputParameterDesignerItemData(inputParameter);
+            if (visualiserService.ShowDialog(data) == true)
+            {
+                this.MethodModel.InputParameters.Add(inputParameter);
             }
         }
 

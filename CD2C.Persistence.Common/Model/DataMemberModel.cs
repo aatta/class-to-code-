@@ -6,20 +6,10 @@ using System.Text;
 
 namespace CD2C.Common
 {
-    public class DataMemberModel : ICloneable
+    public class DataMemberModel
     {
         public ScopeEnum Scope { get; set; }
         public TypeEnum Type { get; set; }
         public string Name { get; set; }
-
-        public object Clone()
-        {
-            return new DataMemberModel
-            {
-                Scope = this.Scope,
-                Type = this.Type,
-                Name = this.Name
-            };
-        }
     }
 }

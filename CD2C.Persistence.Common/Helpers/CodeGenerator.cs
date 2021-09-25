@@ -41,7 +41,7 @@ namespace CD2C.Common.Helpers
 
                 foreach (var m in scopeMethods)
                 {
-                    var rows = m.InputParameters.Select(kv => string.Format("{1} {0}", kv.Key, kv.Value.ToString().Replace("Type", string.Empty))).ToList();
+                    var rows = m.InputParameters.Select(kv => string.Format("{1} {0}", kv.Name, kv.InputType.ToString().Replace("Type", string.Empty))).ToList();
                     var iParams = string.Join(", ", rows);
 
                     sbOutput.AppendLine(string.Format("\t\t{0} {1} ({2})", GetProperTypeName(m.ReturnType), m.Name, iParams));

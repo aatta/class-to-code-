@@ -48,6 +48,7 @@
     <Compile Include="Helpers\ComboHelper.cs" />
     <Compile Include="IDiagramItem.cs" />
     <Compile Include="Model\DataMemberModel.cs" />
+    <Compile Include="Model\InputParameterModel.cs" />
     <Compile Include="Model\MethodModel.cs" />
     <Compile Include="Model\ScopeEnum.cs" />
     <Compile Include="Model\TypeEnum.cs" />

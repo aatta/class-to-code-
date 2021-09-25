@@ -60,6 +60,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Converters\InputParameterConverter.cs" />
     <Compile Include="Converters\DictionaryConverter.cs" />
     <Compile Include="Converters\TypeNameConverter.cs" />
     <Compile Include="Popups\PopupDataMember.xaml.cs">
@@ -85,6 +86,7 @@
     <Compile Include="UserControls\ToolBoxControl.xaml.cs">
       <DependentUpon>ToolBoxControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\InputParameterDesignerItemData.cs" />
     <Compile Include="ViewModels\MethodDesignerItemData.cs" />
     <Compile Include="ViewModels\DataMemberDesignerItemData.cs" />
     <Compile Include="ViewModels\GroupingDesignerItemViewModel.cs" />

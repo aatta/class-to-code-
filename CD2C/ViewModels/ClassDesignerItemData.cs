@@ -15,24 +15,28 @@ namespace DemoApp
     /// the popup to be cancelled without applying any changes to the calling ViewModel
     /// whos data will be updated if the PopupWindow.xaml window is closed successfully
     /// </summary>
-    public class ClassDesignerItemData : INPCBase, ISupportValidation
+    public class ClassDesignerItemData : INPCBase, ISupportDataChanges, ISupportValidation
     {
         private string _className = null;
         private ObservableCollection<MethodModel> _methods = null;
         private ObservableCollection<DataMemberModel> _dataMembers = null;
-        private ICommand _command;
+        private ICommand _command = null;
+        private readonly IUIVisualizerService visualiserService;
 
 
-
-        public ClassDesignerItemData(string className, ObservableCollection<MethodModel> methods, ObservableCollection<DataMemberModel> dataMembers, ICommand command)
+        public ClassDesignerItemData(string className, ObservableCollection<MethodModel> methods, ObservableCollection<DataMemberModel> dataMembers)
         {
             _className = className;
-            _methods = methods;
-            _dataMembers = dataMembers;
-            _command = command;
+
+            //?? checks for null does assignment in one statement.
+            _methods = methods != null ? new ObservableCollection<MethodModel>(methods) : new ObservableCollection<MethodModel>();
+            _dataMembers = dataMembers != null ? new ObservableCollection<DataMemberModel>(dataMembers) : new ObservableCollection<DataMemberModel>();
+
+            _command = new SimpleCommand(ExecuteShowDataChangeWindowCommand);
+            visualiserService = ApplicationServicesProvider.Instance.Provider.VisualizerService;
         }
 
-        public ICommand Command
+        public ICommand ShowDataChangeWindowCommand
         {
             get
             {
@@ -94,6 +98,40 @@ namespace DemoApp
                     _dataMembers = value;
                     NotifyChanged("DataMembers");
                 }
+            }
+        }
+
+        public void ExecuteShowDataChangeWindowCommand(object parameter)
+        {
+            string strParams = null;
+
+            if (parameter != null)
+            {
+                strParams = parameter.ToString();
+            }
+
+            switch (strParams)
+            {
+                case "AddDataMember":
+                    {
+                        DataMemberModel dataMember = new DataMemberModel();
+                        DataMemberDesignerItemData data = new DataMemberDesignerItemData(dataMember);
+                        if (visualiserService.ShowDialog(data) == true)
+                        {
+                            this.DataMembers.Add(dataMember);
+                        }
+                        break;
+                    }
+                case "AddMethod":
+                    {
+                        MethodModel method = new MethodModel();
+                        MethodDesignerItemData data = new MethodDesignerItemData(method);
+                        if (visualiserService.ShowDialog(data) == true)
+                        {
+                            this.Methods.Add(method);
+                        }
+                        break;
+                    }
             }
         }
 

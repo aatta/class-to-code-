@@ -36,38 +36,38 @@ namespace DemoApp
         private void Ok_Click(object sender, RoutedEventArgs e)
         {
 
-            if (cmbScope.SelectedItem == null)
-            {
-                MessageBox.Show("Scope not selected.");
+            //if (cmbScope.SelectedItem == null)
+            //{
+            //    MessageBox.Show("Scope not selected.");
 
-                return;
-            }
+            //    return;
+            //}
 
-            if (cmbType.SelectedItem == null)
-            {
-                MessageBox.Show("Type not selected.");
+            //if (cmbType.SelectedItem == null)
+            //{
+            //    MessageBox.Show("Type not selected.");
 
-                return;
-            }
+            //    return;
+            //}
 
-            if (string.IsNullOrEmpty(txtName.Text))
-            {
-                MessageBox.Show("Name not entered.");
+            //if (string.IsNullOrEmpty(txtName.Text))
+            //{
+            //    MessageBox.Show("Name not entered.");
 
-                return;
-            }
+            //    return;
+            //}
 
-            var name = txtName.Text;
-            var scope = (ScopeEnum)Enum.Parse(typeof(ScopeEnum), ((int)cmbScope.SelectedValue).ToString());
-            var type = (TypeEnum)Enum.Parse(typeof(TypeEnum), ((int)cmbType.SelectedValue).ToString());
+            //var name = txtName.Text;
+            //var scope = (ScopeEnum)Enum.Parse(typeof(ScopeEnum), ((int)cmbScope.SelectedValue).ToString());
+            //var type = (TypeEnum)Enum.Parse(typeof(TypeEnum), ((int)cmbType.SelectedValue).ToString());
 
-            this.Result = new CD2C.Common.MethodModel
-            {
-                Name = name,
-                Scope = scope,
-                ReturnType = type,
-                InputParameters = inputParameters
-            };
+            //this.Result = new CD2C.Common.MethodModel
+            //{
+            //    Name = name,
+            //    Scope = scope,
+            //    ReturnType = type,
+            //    InputParameters = inputParameters
+            //};
 
             this.DialogResult = true;
             this.Close();
@@ -75,23 +75,23 @@ namespace DemoApp
 
         private void AddNewParameter_Click(object sender, RoutedEventArgs e)
         {
-            var visualizerService = new WPFUIVisualizerService();
+            //var visualizerService = new WPFUIVisualizerService();
 
-            var result = visualizerService.ShowInputParameterPopup(this);
+            //var result = visualizerService.ShowInputParameterPopup(this);
 
-            if (!string.IsNullOrEmpty(result.Key) && inputParameters.ContainsKey(result.Key))
-            {
-                MessageBox.Show("Name already exists.");
+            //if (!string.IsNullOrEmpty(result.Key) && inputParameters.ContainsKey(result.Key))
+            //{
+            //    MessageBox.Show("Name already exists.");
 
-                return;
-            }
+            //    return;
+            //}
 
-            if (!string.IsNullOrEmpty(result.Key))
-            {
-                inputParameters.Add(result.Key, result.Value);
+            //if (!string.IsNullOrEmpty(result.Key))
+            //{
+            //    inputParameters.Add(result.Key, result.Value);
 
-                dgInputParameters.Items.Add(result);
-            }
+            //    dgInputParameters.Items.Add(result);
+            //}
         }
     }
 }
