@@ -123,7 +123,7 @@
                                                 HorizontalAlignment="Stretch"
                                                 VerticalAlignment="Stretch">
                                             <Polyline x:Name="poly"
-                                                        Stroke="Gray"
+                                                        Stroke="Red"
                                                         Points="{Binding Path=ConnectionPoints, Converter={x:Static s:ConnectionPathConverter.Instance}}"
                                                         StrokeThickness="2" />
 
