@@ -63,15 +63,6 @@
     <Compile Include="Converters\InputParameterConverter.cs" />
     <Compile Include="Converters\DictionaryConverter.cs" />
     <Compile Include="Converters\TypeNameConverter.cs" />
-    <Compile Include="Popups\PopupDataMember.xaml.cs">
-      <DependentUpon>PopupDataMember.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Popups\PopupInputParameter.xaml.cs">
-      <DependentUpon>PopupInputParameter.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Popups\PopupMethod.xaml.cs">
-      <DependentUpon>PopupMethod.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Popups\PopupWindow.xaml.cs">
       <DependentUpon>PopupWindow.xaml</DependentUpon>
     </Compile>
@@ -142,18 +133,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Popups\PopupDataMember.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Popups\PopupInputParameter.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Popups\PopupMethod.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Popups\PopupWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
