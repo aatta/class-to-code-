@@ -1,15 +1,9 @@
-﻿using System;
+﻿using CD2C.Common;
+using DiagramDesigner;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Collections.ObjectModel;
-using DiagramDesigner.Helpers;
-using DiagramDesigner;
-using System.ComponentModel;
-using System.Windows.Data;
-using CD2C.Common;
 using System.Threading.Tasks;
-using System.Windows;
 
 namespace CD2C
 {
@@ -120,21 +114,25 @@ namespace CD2C
             IsBusy = true;
             DiagramItem wholeDiagram = new DiagramItem();
 
-            Task<int> task = Task.Factory.StartNew<int>(() =>
+            Task<string> task = Task.Factory.StartNew<string>(() =>
             {
                 //ensure that itemsToRemove is cleared ready for any new changes within a session
                 itemsToRemove = new List<SelectableDesignerItemViewModelBase>();
 
-                ExtractClassesFromDesigner(wholeDiagram, DiagramViewModel);
+                var generatedCode = ApplicationServicesProvider.Instance.Provider.CodeGeneratorService.GenerateCode(DiagramViewModel);
 
-                return wholeDiagram.Id;
+                return generatedCode;
             });
             task.ContinueWith((ant) =>
             {
-                int wholeDiagramId = ant.Result;
+                string generatedCode = ant.Result;
+
+                //Save code
+
+                ApplicationServicesProvider.Instance.Provider.MessageBoxService.ShowInformation(generatedCode);
 
                 IsBusy = false;
-                messageBoxService.ShowInformation(string.Format("Finished saving Diagram Id : {0}", wholeDiagramId));
+                messageBoxService.ShowInformation("Finished generating code.");
 
             }, TaskContinuationOptions.OnlyOnRanToCompletion);
         }

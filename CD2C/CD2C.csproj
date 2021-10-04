@@ -66,9 +66,11 @@
     <Compile Include="Popups\PopupWindow.xaml.cs">
       <DependentUpon>PopupWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Services\Contracts\ICodeGeneratorService.cs" />
     <Compile Include="Services\Contracts\IMessageBoxService.cs" />
     <Compile Include="Services\Contracts\IUIVisualizerService.cs" />
     <Compile Include="Services\ApplicationServicesProvider.cs" />
+    <Compile Include="Services\Implentation\CodeGeneratorService.cs" />
     <Compile Include="Services\Implentation\WPFMessageBoxService.cs" />
     <Compile Include="Services\Implentation\WPFUIVisualizerService.cs" />
     <Compile Include="TestWindow.xaml.cs">

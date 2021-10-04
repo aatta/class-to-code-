@@ -17,6 +17,7 @@ namespace CD2C
     {
         IUIVisualizerService VisualizerService { get; }
         IMessageBoxService MessageBoxService { get; }
+        ICodeGeneratorService CodeGeneratorService { get; }
     }
 
 
@@ -27,6 +28,7 @@ namespace CD2C
     {
         private IUIVisualizerService visualizerService = new WPFUIVisualizerService();
         private IMessageBoxService messageBoxService = new WPFMessageBoxService();
+        private ICodeGeneratorService codeGeneratorService = new CodeGeneratorService();
 
         public IUIVisualizerService VisualizerService
         {
@@ -38,6 +40,10 @@ namespace CD2C
             get { return messageBoxService; }
         }
 
+        public ICodeGeneratorService CodeGeneratorService
+        {
+            get { return codeGeneratorService; }
+        }
     }
 
 
