@@ -7,6 +7,6 @@ namespace CD2C
     public interface ICodeGeneratorService
     {
         string GenerateCode(DiagramViewModel diagramViewModel);
-        string GenerateClass(string className, IEnumerable<MethodModel> methods, IEnumerable<DataMemberModel> dataMembers);
+        string GenerateClass(string className, string parentClassName, IEnumerable<MethodModel> methods, IEnumerable<DataMemberModel> dataMembers);
     }
 }
