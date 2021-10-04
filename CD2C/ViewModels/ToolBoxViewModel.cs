@@ -14,13 +14,11 @@ namespace DemoApp
 
         public ToolBoxViewModel()
         {
-            //toolBoxItems.Add(new ToolBoxData("../Images/Persist.png", typeof(SettingsDesignerItemViewModel)));
-            //toolBoxItems.Add(new ToolBoxData("../Images/Setting.png", typeof(SettingsDesignerItemViewModel)));
             toolBoxItems.Add(new ToolBoxData("./Images/icon_class.png", typeof(ClassDesignerItemViewModel), 173.0, 53.0));
-            toolBoxItems.Add(new ToolBoxData("./Images/icon_assoc.png", typeof(PersistDesignerItemViewModel), 173.0, 53.0));
-            toolBoxItems.Add(new ToolBoxData("./Images/icon_inherit.png", typeof(PersistDesignerItemViewModel), 173.0, 21.0));
-            toolBoxItems.Add(new ToolBoxData("./Images/icon_aggre.png", typeof(PersistDesignerItemViewModel), 173.0, 53.0));
-            toolBoxItems.Add(new ToolBoxData("./Images/icon_comp.png", typeof(PersistDesignerItemViewModel), 173.0, 53.0));
+            toolBoxItems.Add(new ToolBoxData("./Images/icon_assoc.png", typeof(ClassDesignerItemViewModel), 173.0, 53.0));
+            toolBoxItems.Add(new ToolBoxData("./Images/icon_inherit.png", typeof(ClassDesignerItemViewModel), 173.0, 21.0));
+            toolBoxItems.Add(new ToolBoxData("./Images/icon_aggre.png", typeof(ClassDesignerItemViewModel), 173.0, 53.0));
+            toolBoxItems.Add(new ToolBoxData("./Images/icon_comp.png", typeof(ClassDesignerItemViewModel), 173.0, 53.0));
         }
 
         public List<ToolBoxData> ToolBoxItems

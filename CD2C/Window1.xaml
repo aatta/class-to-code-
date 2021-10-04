@@ -20,10 +20,10 @@
                     Content="New"
 					Margin="8,0,3,0"
                     Command="{Binding CreateNewDiagramCommand}"/>
-            <Button ToolTip="Save"
-                    Content="Save"
+            <Button ToolTip="Generate Code"
+                    Content="Generate Code"
                     Margin="8,0,3,0"
-                    Command="{Binding SaveDiagramCommand}" />
+                    Command="{Binding GenerateCodeCommand}" />
             <ProgressBar Margin="8,0,3,0"
                          Visibility="{Binding Path=IsBusy, Converter={x:Static s:BoolToVisibilityConverter.Instance}}"
                          IsIndeterminate="True"

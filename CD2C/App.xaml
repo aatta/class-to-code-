@@ -21,9 +21,6 @@
 
                 <!-- specific designer items, you should have one of these per ViewModel that you want to represent on diagram -->
                 <ResourceDictionary Source="Resources/DesignerItems/ClassDesignerItemDataTemplate.xaml" />
-                <ResourceDictionary Source="Resources/DesignerItems/SettingsDesignerItemDataTemplate.xaml" />
-                <ResourceDictionary Source="Resources/DesignerItems/PersistDesignerItemDataTemplate.xaml" />
-                <ResourceDictionary Source="Resources/DesignerItems/GroupingDesignerItemDataTemplate.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

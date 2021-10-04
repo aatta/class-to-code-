@@ -80,17 +80,12 @@
     <Compile Include="ViewModels\InputParameterDesignerItemData.cs" />
     <Compile Include="ViewModels\MethodDesignerItemData.cs" />
     <Compile Include="ViewModels\DataMemberDesignerItemData.cs" />
-    <Compile Include="ViewModels\GroupingDesignerItemViewModel.cs" />
     <Compile Include="ViewModels\ClassDesignerItemData.cs" />
     <Compile Include="ViewModels\ClassDesignerItemViewModel.cs" />
     <Compile Include="ViewModels\ISupportValidation.cs" />
     <Compile Include="ViewModels\ToolBoxViewModel.cs" />
-    <Compile Include="ViewModels\SettingsDesignerItemData.cs" />
     <Compile Include="ViewModels\ISupportDataChanges.cs" />
-    <Compile Include="ViewModels\PersistDesignerItemData.cs" />
     <Compile Include="ViewModels\Window1ViewModel.cs" />
-    <Compile Include="ViewModels\PersistDesignerItemViewModel.cs" />
-    <Compile Include="ViewModels\SettingsDesignerItemViewModel.cs" />
     <Compile Include="Window1.xaml.cs">
       <DependentUpon>Window1.xaml</DependentUpon>
     </Compile>
@@ -138,19 +133,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Resources\DesignerItems\GroupingDesignerItemDataTemplate.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Resources\DesignerItems\ClassDesignerItemDataTemplate.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Resources\DesignerItems\SettingsDesignerItemDataTemplate.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Resources\DesignerItems\PersistDesignerItemDataTemplate.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

@@ -128,13 +128,6 @@ namespace DemoApp
             {
                 DataMembers = new ObservableCollection<DataMemberModel>();
             }
-
-            //Methods = new List<MethodModel>();
-
-            //for (int i = 1; i <= 10; i++)
-            //{
-            //    Methods.Add(string.Format("Method{0}", i));
-            //}
         }
     }
 }
