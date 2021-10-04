@@ -43,7 +43,6 @@
     <Compile Include="Connection.cs" />
     <Compile Include="DesignerItemBase.cs" />
     <Compile Include="DiagramItem.cs" />
-    <Compile Include="Helpers\CodeGenerator.cs" />
     <Compile Include="Helpers\ComboHelper.cs" />
     <Compile Include="IDiagramItem.cs" />
     <Compile Include="Model\DataMemberModel.cs" />
