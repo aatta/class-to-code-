@@ -20,8 +20,8 @@ namespace CD2C
         {
             messageBoxService = ApplicationServicesProvider.Instance.Provider.MessageBoxService;
 
-            ToolBoxViewModel = new ToolBoxViewModel();
             DiagramViewModel = new DiagramViewModel();
+            ToolBoxViewModel = new ToolBoxViewModel(DiagramViewModel.ToolBoxItemClickCommand);
 
             DeleteSelectedItemsCommand = new SimpleCommand(ExecuteDeleteSelectedItemsCommand);
             CreateNewDiagramCommand = new SimpleCommand(ExecuteCreateNewDiagramCommand);

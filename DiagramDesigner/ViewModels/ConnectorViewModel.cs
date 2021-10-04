@@ -28,6 +28,7 @@ namespace DiagramDesigner
             Init(sourceConnectorInfo, sinkConnectorInfo);
         }
 
+        public ConnectionTypeEnum ConnectionType { get; set; }
 
         public static IPathFinder PathFinder { get; set; }
 

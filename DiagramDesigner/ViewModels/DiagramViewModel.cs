@@ -15,6 +15,7 @@ namespace DiagramDesigner
             RemoveItemCommand = new SimpleCommand(ExecuteRemoveItemCommand);
             ClearSelectedItemsCommand = new SimpleCommand(ExecuteClearSelectedItemsCommand);
             CreateNewDiagramCommand = new SimpleCommand(ExecuteCreateNewDiagramCommand);
+            ToolBoxItemClickCommand = new SimpleCommand(ExecuteToolBoxItemClickCommand);
 
             Mediator.Instance.Register(this);
         }
@@ -35,6 +36,7 @@ namespace DiagramDesigner
         public SimpleCommand RemoveItemCommand { get; private set; }
         public SimpleCommand ClearSelectedItemsCommand { get; private set; }
         public SimpleCommand CreateNewDiagramCommand { get; private set; }
+        public SimpleCommand ToolBoxItemClickCommand { get; private set; }
 
         public ObservableCollection<SelectableDesignerItemViewModelBase> Items
         {
@@ -46,14 +48,52 @@ namespace DiagramDesigner
             get { return Items.Where(x => x.IsSelected).ToList(); }
         }
 
-        private void ExecuteAddItemCommand(object parameter)
+        private ConnectionTypeEnum currentConnectionType = ConnectionTypeEnum.Inheritance;
+        public ConnectionTypeEnum CurrentConnectionType
+        {
+            get
+            {
+                return currentConnectionType;
+            }
+            set
+            {
+                currentConnectionType = value;
+                NotifyChanged("CurrentConnectionType");
+            }
+        }
+
+        protected virtual void ExecuteAddItemCommand(object parameter)
         {
             if (parameter is SelectableDesignerItemViewModelBase)
             {
                 SelectableDesignerItemViewModelBase item = (SelectableDesignerItemViewModelBase)parameter;
                 item.Parent = this;
-                items.Add(item);
+                Items.Add(item);
             }
+
+            if (parameter is ConnectorViewModel)
+            {
+                ConnectorViewModel item = (ConnectorViewModel)parameter;
+
+                item.ConnectionType = currentConnectionType;
+
+                //Reset
+                if (item.IsFullConnection)
+                {
+                    System.Windows.Input.Mouse.OverrideCursor = null;
+                    CurrentConnectionType = ConnectionTypeEnum.Inheritance;
+                }
+            }
+        }
+
+        private void ExecuteToolBoxItemClickCommand(object parameter)
+        {
+            var connectionTypeId = System.Convert.ToInt32(parameter);
+
+            CurrentConnectionType = (ConnectionTypeEnum)System.Enum.Parse(typeof(ConnectionTypeEnum), connectionTypeId.ToString());
+
+            System.Windows.Input.Mouse.OverrideCursor = new System.Windows.Input.Cursor(System.IO.Path.GetFullPath("./Images/assoc.cur"));
+            //System.Windows.Input.Mouse.OverrideCursor = System.Windows.Input.Cursors.Arrow;
         }
 
         private void ExecuteRemoveItemCommand(object parameter)

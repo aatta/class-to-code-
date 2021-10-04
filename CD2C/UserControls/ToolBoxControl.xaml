@@ -47,7 +47,7 @@
                                 BorderThickness="0"
                                 Margin="0"
                                 s:SelectionProps.EnabledForSelection="False"
-                                CommandParameter="{Binding}"
+                                CommandParameter="{Binding ConnectionType}"
                                 Command="{Binding Path=DataContext.ItemClickCommand, RelativeSource={RelativeSource AncestorType={x:Type ItemsPresenter}}}">
                                 <Button.Style>
                                     <Style TargetType="{x:Type Button}">
