@@ -1,10 +1,5 @@
-﻿using System;
+﻿using DiagramDesigner.Helpers;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Collections.ObjectModel;
-using DiagramDesigner.Helpers;
-using DiagramDesigner;
 
 namespace CD2C
 {

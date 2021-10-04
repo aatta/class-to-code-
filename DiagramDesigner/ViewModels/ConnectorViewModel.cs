@@ -1,10 +1,8 @@
-﻿using System;
+﻿using DiagramDesigner.Helpers;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
-using System.Text;
 using System.Windows;
-using DiagramDesigner.Helpers;
 
 namespace DiagramDesigner
 {
@@ -19,8 +17,8 @@ namespace DiagramDesigner
         private Rect area;
 
 
-        public ConnectorViewModel(int id, IDiagramViewModel parent, 
-            FullyCreatedConnectorInfo sourceConnectorInfo, FullyCreatedConnectorInfo sinkConnectorInfo) : base(id,parent)
+        public ConnectorViewModel(int id, IDiagramViewModel parent,
+            FullyCreatedConnectorInfo sourceConnectorInfo, FullyCreatedConnectorInfo sinkConnectorInfo) : base(id, parent)
         {
             Init(sourceConnectorInfo, sinkConnectorInfo);
         }
@@ -183,15 +181,15 @@ namespace DiagramDesigner
 
         private void UpdateArea()
         {
-            Area = new Rect(SourceA, SourceB); 
+            Area = new Rect(SourceA, SourceB);
         }
 
         private void UpdateConnectionPoints()
         {
             ConnectionPoints = new List<Point>()
                                    {
-                                       
-                                       new Point( SourceA.X  <  SourceB.X ? 0d : Area.Width, SourceA.Y  <  SourceB.Y ? 0d : Area.Height ), 
+
+                                       new Point( SourceA.X  <  SourceB.X ? 0d : Area.Width, SourceA.Y  <  SourceB.Y ? 0d : Area.Height ),
                                        new Point(SourceA.X  >  SourceB.X ? 0d : Area.Width, SourceA.Y  >  SourceB.Y ? 0d : Area.Height)
                                    };
 
@@ -200,7 +198,7 @@ namespace DiagramDesigner
                                             ConnectionPoints[0].Y,
                                             ConnectionPoints[0]);
 
-            if(IsFullConnection)
+            if (IsFullConnection)
             {
                 EndPoint = ConnectionPoints.Last();
                 ConnectorInfo sinkInfo = ConnectorInfo(SinkConnectorInfo.Orientation,

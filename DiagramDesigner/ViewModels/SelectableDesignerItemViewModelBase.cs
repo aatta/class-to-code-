@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Windows.Input;
 
 namespace DiagramDesigner
 {
 
     public interface ISelectItems
     {
-        SimpleCommand SelectItemCommand { get;  }
+        SimpleCommand SelectItemCommand { get; }
     }
 
 
@@ -48,7 +45,7 @@ namespace DiagramDesigner
             {
                 if (isSelected != value)
                 {
-                    
+
                     isSelected = value;
                     NotifyChanged("IsSelected");
                 }
@@ -59,7 +56,7 @@ namespace DiagramDesigner
         {
             SelectItem((bool)param, !IsSelected);
         }
-        
+
         private void SelectItem(bool newselect, bool select)
         {
             if (newselect)
@@ -72,7 +69,7 @@ namespace DiagramDesigner
 
             IsSelected = select;
         }
-    
+
         private void Init()
         {
             SelectItemCommand = new SimpleCommand(ExecuteSelectItemCommand);

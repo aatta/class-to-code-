@@ -1,14 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Markup;
 using System.Windows.Media;
-using System.Xml;
-using System.Linq;
 
 namespace DiagramDesigner
 {
@@ -37,7 +34,7 @@ namespace DiagramDesigner
                     sourceConnector = value;
                     connectorsHit.Add(sourceConnector);
                     FullyCreatedConnectorInfo sourceDataItem = sourceConnector.DataContext as FullyCreatedConnectorInfo;
-                    
+
 
                     Rect rectangleBounds = sourceConnector.TransformToVisual(this).TransformBounds(new Rect(sourceConnector.RenderSize));
                     Point point = new Point(rectangleBounds.Left + (rectangleBounds.Width / 2),
@@ -109,7 +106,7 @@ namespace DiagramDesigner
         {
             base.OnMouseMove(e);
 
-            if(SourceConnector != null)
+            if (SourceConnector != null)
             {
                 if (e.LeftButton == MouseButtonState.Pressed)
                 {

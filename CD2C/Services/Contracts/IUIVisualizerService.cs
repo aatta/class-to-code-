@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace CD2C
+﻿namespace CD2C
 {
     /// <summary>
     /// This interface defines a UI controller which can be used to display dialogs

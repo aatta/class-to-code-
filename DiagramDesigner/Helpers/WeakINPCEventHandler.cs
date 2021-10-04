@@ -1,15 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Diagnostics;
-using System.Linq;
 using System.Reflection;
-using System.Text;
 
 namespace DiagramDesigner.Helpers
 {
     //[DebuggerNonUserCode]
-    public sealed class WeakINPCEventHandler 
+    public sealed class WeakINPCEventHandler
     {
         private readonly WeakReference _targetReference;
         private readonly MethodInfo _method;

@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace CD2C.Common
 {
     public class DiagramItem : PersistableItemBase, IDiagramItem
     {
-        public DiagramItem() 
+        public DiagramItem()
         {
             this.DesignerItems = new List<DiagramItemData>();
             this.ConnectionIds = new List<int>();
@@ -28,5 +26,5 @@ namespace CD2C.Common
 
         public int ItemId { get; set; }
         public Type ItemType { get; set; }
-    }  
+    }
 }

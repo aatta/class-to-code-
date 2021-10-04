@@ -1,9 +1,9 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System;
 
 namespace DiagramDesigner
 {
@@ -85,7 +85,7 @@ namespace DiagramDesigner
         {
             IDiagramViewModel vm = (designerCanvas.DataContext as IDiagramViewModel);
             Rect rubberBand = new Rect(startPoint.Value, endPoint.Value);
-            ItemsControl itemsControl = GetParent<ItemsControl>(typeof (ItemsControl), designerCanvas);
+            ItemsControl itemsControl = GetParent<ItemsControl>(typeof(ItemsControl), designerCanvas);
 
             foreach (SelectableDesignerItemViewModelBase item in vm.Items)
             {
@@ -93,8 +93,8 @@ namespace DiagramDesigner
                 {
                     DependencyObject container = itemsControl.ItemContainerGenerator.ContainerFromItem(item);
 
-                    Rect itemRect = VisualTreeHelper.GetDescendantBounds((Visual) container);
-                    Rect itemBounds = ((Visual) container).TransformToAncestor(designerCanvas).TransformBounds(itemRect);
+                    Rect itemRect = VisualTreeHelper.GetDescendantBounds((Visual)container);
+                    Rect itemBounds = ((Visual)container).TransformToAncestor(designerCanvas).TransformBounds(itemRect);
 
                     if (rubberBand.Contains(itemBounds))
                     {

@@ -1,15 +1,10 @@
-﻿using CD2C.Common;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows;
+﻿using System.Windows;
 
 namespace CD2C
 {
     public class WPFUIVisualizerService : IUIVisualizerService
     {
- 
+
         #region Public Methods
         /// <summary>
         /// This method displays a modal dialog associated with the given key.

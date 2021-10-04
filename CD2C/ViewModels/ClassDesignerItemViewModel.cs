@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using CD2C.Common;
 using DiagramDesigner;
-using System.Windows.Input;
-using CD2C.Common;
 using System.Collections.ObjectModel;
+using System.Windows.Input;
 
 namespace CD2C
 {

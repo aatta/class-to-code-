@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace CD2C.Common.Helpers
 {
@@ -23,7 +21,7 @@ namespace CD2C.Common.Helpers
                 {
                     Id = val,
                     Text = Enum.GetName(typeof(T), val)
-                }) ;
+                });
             }
 
             return values;

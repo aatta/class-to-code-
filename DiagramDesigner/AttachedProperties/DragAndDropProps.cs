@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using DiagramDesigner.Helpers;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Media;
 using System.Windows.Input;
-using DiagramDesigner.Helpers;
 
 namespace DiagramDesigner
 {
-    public static class DragAndDropProps     
+    public static class DragAndDropProps
     {
         #region EnabledForDrag
 
@@ -31,10 +25,10 @@ namespace DiagramDesigner
 
         private static void OnEnabledForDragChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            FrameworkElement fe = (FrameworkElement) d;
+            FrameworkElement fe = (FrameworkElement)d;
 
 
-            if((bool)e.NewValue)
+            if ((bool)e.NewValue)
             {
                 fe.PreviewMouseDown += Fe_PreviewMouseDown;
                 fe.MouseMove += Fe_MouseMove;

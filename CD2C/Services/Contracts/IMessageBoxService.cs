@@ -1,7 +1,4 @@
-﻿using System;
-
-
-namespace CD2C
+﻿namespace CD2C
 {
     /// <summary>
     /// Available Button options. 

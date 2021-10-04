@@ -2,8 +2,8 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
-using System.Windows.Media;
 using System.Windows.Input;
+using System.Windows.Media;
 
 namespace DiagramDesigner
 {
@@ -100,7 +100,7 @@ namespace DiagramDesigner
 
         private void ZoomSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            
+
             double scale = e.NewValue / e.OldValue;
             double halfViewportHeight = this.ScrollViewer.ViewportHeight / 2;
             double newVerticalOffset = ((this.ScrollViewer.VerticalOffset + halfViewportHeight) * scale - halfViewportHeight);
@@ -133,10 +133,10 @@ namespace DiagramDesigner
         private void DesignerCanvas_MouseWheel(object sender, EventArgs e)
         {
             MouseWheelEventArgs wheel = (MouseWheelEventArgs)e;
-           
+
             //divide the value by 10 so that it is more smooth
             double value = Math.Max(0, wheel.Delta / 10);
-            value = Math.Min(wheel.Delta/12, 10);
+            value = Math.Min(wheel.Delta / 12, 10);
             this.zoomSlider.Value += value;
         }
 

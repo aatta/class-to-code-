@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Windows;
 using System.Windows.Data;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
 
 namespace DiagramDesigner
 {
@@ -29,7 +26,7 @@ namespace DiagramDesigner
             PointCollection pointCollection = new PointCollection();
             foreach (Point point in points)
             {
-                pointCollection.Add(point);   
+                pointCollection.Add(point);
             }
             return pointCollection;
         }

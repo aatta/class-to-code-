@@ -1,10 +1,4 @@
-﻿using CD2C.Common;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace CD2C.Common
+﻿namespace CD2C.Common
 {
     public class DataMemberModel
     {

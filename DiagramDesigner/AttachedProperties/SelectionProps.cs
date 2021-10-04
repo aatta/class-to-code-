@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Input;
 
 namespace DiagramDesigner
@@ -46,7 +42,7 @@ namespace DiagramDesigner
             SelectableDesignerItemViewModelBase selectableDesignerItemViewModelBase =
                 (SelectableDesignerItemViewModelBase)((FrameworkElement)sender).DataContext;
 
-            if(selectableDesignerItemViewModelBase != null)
+            if (selectableDesignerItemViewModelBase != null)
             {
                 if ((Keyboard.Modifiers & (ModifierKeys.Shift | ModifierKeys.Control)) != ModifierKeys.None)
                 {

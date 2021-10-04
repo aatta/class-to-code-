@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows.Input;
+﻿using System.Collections.Generic;
 
 namespace DiagramDesigner
 {
@@ -36,7 +32,7 @@ namespace DiagramDesigner
             Init();
         }
 
-        public DesignerItemViewModelBase(): base()
+        public DesignerItemViewModelBase() : base()
         {
             Init();
         }

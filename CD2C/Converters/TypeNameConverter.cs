@@ -1,9 +1,6 @@
 ﻿using CD2C.Common;
 using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Text;
 using System.Windows;
 using System.Windows.Data;
 using System.Windows.Markup;
@@ -22,7 +19,7 @@ namespace CD2C.Converters
             }
 
             var dm = (TypeEnum)Enum.Parse(typeof(TypeEnum), value.ToString());
-            
+
             return dm.ToString().Replace("Type", string.Empty);
         }
 

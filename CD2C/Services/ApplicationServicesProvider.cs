@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using CD2C.Common;
 
 
 
@@ -78,7 +74,7 @@ namespace CD2C
 
         public static ApplicationServicesProvider Instance
         {
-            get { return instance.Value;  }
+            get { return instance.Value; }
         }
     }
 }

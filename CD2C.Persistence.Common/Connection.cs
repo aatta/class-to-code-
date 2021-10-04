@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace CD2C.Common
 {
     public class Connection : PersistableItemBase
     {
-        public Connection(int id, int sourceId, Orientation sourceOrientation, 
+        public Connection(int id, int sourceId, Orientation sourceOrientation,
             Type sourceType, int sinkId, Orientation sinkOrientation, Type sinkType) : base(id)
         {
             this.SourceId = sourceId;
