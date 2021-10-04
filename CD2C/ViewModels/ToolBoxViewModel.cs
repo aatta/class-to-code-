@@ -6,7 +6,7 @@ using System.Collections.ObjectModel;
 using DiagramDesigner.Helpers;
 using DiagramDesigner;
 
-namespace DemoApp
+namespace CD2C
 {
     public class ToolBoxViewModel
     {

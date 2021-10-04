@@ -7,7 +7,7 @@ using System.Windows.Input;
 using CD2C.Common;
 using System.Collections.ObjectModel;
 
-namespace DemoApp
+namespace CD2C
 {
     public class ClassDesignerItemViewModel : DesignerItemViewModelBase, ISupportDataChanges
     {

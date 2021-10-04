@@ -5,7 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Windows;
 
-namespace DemoApp
+namespace CD2C
 {
     /// <summary>
     /// Interaction logic for App.xaml

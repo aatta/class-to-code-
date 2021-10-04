@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Windows;
 
-namespace DemoApp
+namespace CD2C
 {
     public class WPFUIVisualizerService : IUIVisualizerService
     {

@@ -8,7 +8,7 @@ using CD2C.Common;
 using CD2C.Common.Helpers;
 using DiagramDesigner;
 
-namespace DemoApp
+namespace CD2C
 {
     /// <summary>
     /// This is passed to the PopupWindow.xaml window, where a DataTemplate is used to provide the

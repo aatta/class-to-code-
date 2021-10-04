@@ -11,7 +11,7 @@ using CD2C.Common;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace DemoApp
+namespace CD2C
 {
     public class Window1ViewModel : INPCBase
     {

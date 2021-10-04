@@ -7,7 +7,7 @@ using CD2C.Common;
 
 
 
-namespace DemoApp
+namespace CD2C
 {
 
     /// <summary>

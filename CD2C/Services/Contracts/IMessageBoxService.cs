@@ -1,7 +1,7 @@
 ﻿using System;
 
 
-namespace DemoApp
+namespace CD2C
 {
     /// <summary>
     /// Available Button options. 

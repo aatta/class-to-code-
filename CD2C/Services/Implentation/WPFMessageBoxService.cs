@@ -4,7 +4,7 @@ using System.Windows;
 
 
 
-namespace DemoApp
+namespace CD2C
 {
     /// <summary>
     /// This class implements the IMessageBoxService for WPF purposes.

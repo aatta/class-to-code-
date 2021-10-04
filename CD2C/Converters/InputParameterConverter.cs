@@ -9,7 +9,7 @@ using System.Windows;
 using System.Windows.Data;
 using System.Windows.Markup;
 
-namespace DemoApp.Converters
+namespace CD2C.Converters
 {
     /// <summary>
     [ValueConversion(typeof(ObservableCollection<InputParameterModel>), typeof(string))]

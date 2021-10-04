@@ -12,7 +12,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace DemoApp
+namespace CD2C
 {
     /// <summary>
     /// Interaction logic for ToolBoxControl.xaml

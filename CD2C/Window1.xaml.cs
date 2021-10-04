@@ -9,7 +9,7 @@ using System.Collections.Generic;
 using DiagramDesigner.Helpers;
 using DiagramDesigner;
 
-namespace DemoApp
+namespace CD2C
 {
     public partial class Window1 : Window
     {
