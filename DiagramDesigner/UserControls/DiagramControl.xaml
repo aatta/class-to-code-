@@ -123,11 +123,9 @@
                                                 HorizontalAlignment="Stretch"
                                                 VerticalAlignment="Stretch">
                                             <Polyline x:Name="poly"
-                                                        Stroke="Red"
+                                                        Stroke="LightBlue"
                                                         Points="{Binding Path=ConnectionPoints, Converter={x:Static s:ConnectionPathConverter.Instance}}"
                                                         StrokeThickness="2" />
-
-
                                             <Path x:Name="arrow"
                                                     Data="M0,10 L5,0 10,10 z"
                                                     Visibility="{Binding Path=IsFullConnection, Converter={x:Static s:BoolToVisibilityConverter.Instance}}"
@@ -207,7 +205,22 @@
                                                     </Setter.Value>
                                                 </Setter>
                                             </DataTrigger>
-
+                                            <DataTrigger Binding="{Binding Path=ConnectionType}" Value="{x:Static s:ConnectionTypeEnum.Inheritance}">
+                                                <Setter TargetName="arrow" Property="Data" Value="M0,10 L5,0 10,10 z"/>
+                                                <Setter TargetName="arrow" Property="Fill" Value="LightBlue"/>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding Path=ConnectionType}" Value="{x:Static s:ConnectionTypeEnum.Association}">
+                                                <Setter TargetName="arrow" Property="Data" Value="M0,10 L5,0 10,10 z"/>
+                                                <Setter TargetName="arrow" Property="Fill" Value="LightBlue"/>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding Path=ConnectionType}" Value="{x:Static s:ConnectionTypeEnum.Aggregation}">
+                                                <Setter TargetName="arrow" Property="Data" Value="M 50 0 100 100 50 200 0 100 Z"/>
+                                                <Setter TargetName="arrow" Property="Fill" Value="Transparent"/>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding Path=ConnectionType}" Value="{x:Static s:ConnectionTypeEnum.Composition}">
+                                                <Setter TargetName="arrow" Property="Data" Value="M 50 0 100 100 50 200 0 100 Z"/>
+                                                <Setter TargetName="arrow" Property="Fill" Value="DarkBlue"/>
+                                            </DataTrigger>
                                         </DataTemplate.Triggers>
                                     </DataTemplate>
                                 </Setter.Value>

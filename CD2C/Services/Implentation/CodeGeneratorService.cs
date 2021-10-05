@@ -21,11 +21,11 @@ namespace CD2C
             {
                 var parentClassName = connections.
                     Where(con =>
-                        con.SourceConnectorInfo.DataItem is ClassDesignerItemViewModel &&
+                        con.SourceConnectorInfo.DataItem == classViewModel &&
                         con.SinkConnectorInfo is FullyCreatedConnectorInfo &&
-                        (con.SinkConnectorInfo as FullyCreatedConnectorInfo).DataItem == classViewModel
+                        con.IsFullConnection
                     ).
-                    Select(con => (con.SourceConnectorInfo.DataItem as ClassDesignerItemViewModel).ClassName).
+                    Select(con => ((con.SinkConnectorInfo as FullyCreatedConnectorInfo).DataItem as ClassDesignerItemViewModel).ClassName).
                     FirstOrDefault();
 
                 string classCode = GenerateClass(classViewModel.ClassName, parentClassName, classViewModel.Methods, classViewModel.DataMembers);

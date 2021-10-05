@@ -15,6 +15,7 @@ namespace DiagramDesigner
         private List<Point> connectionPoints;
         private Point endPoint;
         private Rect area;
+        private ConnectionTypeEnum connectionType;
 
 
         public ConnectorViewModel(int id, IDiagramViewModel parent,
@@ -28,7 +29,18 @@ namespace DiagramDesigner
             Init(sourceConnectorInfo, sinkConnectorInfo);
         }
 
-        public ConnectionTypeEnum ConnectionType { get; set; }
+        public ConnectionTypeEnum ConnectionType
+        {
+            get
+            {
+                return connectionType;
+            }
+            set
+            {
+                connectionType = value;
+                NotifyChanged("ConnectionType");
+            }
+        }
 
         public static IPathFinder PathFinder { get; set; }
 
