@@ -99,7 +99,7 @@
     <Compile Include="UserControls\DiagramControl.xaml.cs">
       <DependentUpon>DiagramControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\ConnectionTypeEnum.cs" />
+    <Compile Include="ViewModels\Enums.cs" />
     <Compile Include="ViewModels\ConnectorInfoBase.cs" />
     <Compile Include="Converters\ImageUrlConverter.cs" />
     <Compile Include="Helpers\DragObject.cs" />

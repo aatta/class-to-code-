@@ -149,13 +149,13 @@
                                                             Binding="{Binding IsSelected}">
                                                 <Setter TargetName="poly"
                                                         Property="Stroke"
-                                                        Value="Black" />
+                                                        Value="DarkBlue" />
                                                 <Setter TargetName="arrow"
                                                         Property="Stroke"
-                                                        Value="Black" />
+                                                        Value="DarkBlue" />
                                                 <Setter TargetName="arrow"
                                                         Property="Fill"
-                                                        Value="Black" />
+                                                        Value="DarkBlue" />
                                             </DataTrigger>
                                             <DataTrigger Binding="{Binding Path=SinkConnectorInfo.Orientation}"
                                                             Value="Left">
@@ -210,8 +210,7 @@
                                                 <Setter TargetName="arrow" Property="Fill" Value="LightBlue"/>
                                             </DataTrigger>
                                             <DataTrigger Binding="{Binding Path=ConnectionType}" Value="{x:Static s:ConnectionTypeEnum.Association}">
-                                                <Setter TargetName="arrow" Property="Data" Value="M0,10 L5,0 10,10 z"/>
-                                                <Setter TargetName="arrow" Property="Fill" Value="LightBlue"/>
+                                                <Setter TargetName="arrow" Property="Visibility" Value="Hidden"/>
                                             </DataTrigger>
                                             <DataTrigger Binding="{Binding Path=ConnectionType}" Value="{x:Static s:ConnectionTypeEnum.Aggregation}">
                                                 <Setter TargetName="arrow" Property="Data" Value="M 50 0 100 100 50 200 0 100 Z"/>

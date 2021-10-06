@@ -103,6 +103,13 @@ namespace DiagramDesigner
                 SelectableDesignerItemViewModelBase item = (SelectableDesignerItemViewModelBase)parameter;
                 items.Remove(item);
             }
+
+            if (parameter is ConnectorViewModel)
+            {
+                ConnectorViewModel item = (ConnectorViewModel)parameter;
+
+                items.Remove(item);
+            }
         }
 
         private void ExecuteClearSelectedItemsCommand(object parameter)
