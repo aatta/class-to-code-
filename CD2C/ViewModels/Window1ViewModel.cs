@@ -1,5 +1,6 @@
 ﻿using CD2C.Common;
 using DiagramDesigner;
+using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel;
@@ -167,11 +168,28 @@ namespace CD2C
                 string generatedCode = ant.Result;
 
                 //Save code
+                Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog();
+                dlg.FileName = string.Format("{0}.cpp", "cd2c"); // Default file name
+                dlg.DefaultExt = ".cpp"; // Default file extension
+                dlg.Filter = "C++ code (.cpp)|*.cpp"; // Filter files by extension
 
-                ApplicationServicesProvider.Instance.Provider.MessageBoxService.ShowInformation(generatedCode);
+                // Show save file dialog box
+                Nullable<bool> result = dlg.ShowDialog();
+
+                // Process save file dialog box results
+                if (result == true)
+                {
+                    // Save document
+                    string fileName = dlg.FileName;
+
+                    System.IO.File.WriteAllText(fileName, generatedCode);
+
+                    //Environment.Exit(0);
+                }
 
                 IsBusy = false;
-                messageBoxService.ShowInformation("Finished generating code.");
+                //messageBoxService.ShowInformation(generatedCode);
+                //messageBoxService.ShowInformation("Finished generating code.");
 
             }, TaskContinuationOptions.OnlyOnRanToCompletion);
         }
