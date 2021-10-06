@@ -36,7 +36,7 @@
                     <ItemsControl.Resources>
                         <DataTemplate x:Key="Draggable">
                             <Image IsHitTestVisible="True"
-                                Stretch="Fill"
+                                Stretch="Uniform"
                                 Width="{Binding Width}"
                                 Height="{Binding Height}"
                                 Source="{Binding ImageUrl, Converter={x:Static s:ImageUrlConverter.Instance}}"/>
