@@ -19,16 +19,28 @@ namespace CD2C
 
             foreach (var classViewModel in diagramViewModel.Items.OfType<ClassDesignerItemViewModel>())
             {
-                var parentClassName = connections.
+                var connectionInfo = connections.
                     Where(con =>
                         con.SourceConnectorInfo.DataItem == classViewModel &&
                         con.SinkConnectorInfo is FullyCreatedConnectorInfo &&
                         con.IsFullConnection
                     ).
-                    Select(con => ((con.SinkConnectorInfo as FullyCreatedConnectorInfo).DataItem as ClassDesignerItemViewModel).ClassName).
+                    Select(con => new
+                    {
+                        ParentClassName = ((con.SinkConnectorInfo as FullyCreatedConnectorInfo).DataItem as ClassDesignerItemViewModel).ClassName,
+                        Multiplicity = con.MultiplicityType,
+                        ConnectionType = con.ConnectionType
+                    }).
                     FirstOrDefault();
 
-                string classCode = GenerateClass(classViewModel.ClassName, parentClassName, classViewModel.Methods, classViewModel.DataMembers);
+                string classCode =
+                    GenerateClass(classViewModel.ClassName,
+                        connectionInfo == null ? null : connectionInfo.ParentClassName,
+                        connectionInfo == null ? ConnectionTypeEnum.Inheritance : connectionInfo.ConnectionType,
+                        connectionInfo == null ? MultiplicityTypeEnum.Unspecified : connectionInfo.Multiplicity,
+                        classViewModel.Methods,
+                        classViewModel.DataMembers
+                    );
 
                 sbCode.AppendLine(classCode);
                 sbCode.AppendLine();
@@ -37,10 +49,18 @@ namespace CD2C
             return sbCode.ToString();
         }
 
-        public string GenerateClass(string className, string parentClassName, IEnumerable<MethodModel> methods, IEnumerable<DataMemberModel> dataMembers)
+        public string GenerateClass(string className, string parentClassName, ConnectionTypeEnum connectionType, MultiplicityTypeEnum multiplicityType, IEnumerable<MethodModel> methods, IEnumerable<DataMemberModel> dataMembers)
         {
+            //Add members according to connection type and multiplicity.
+
+            var allScopes = new List<ScopeEnum>();
+            if (connectionType == ConnectionTypeEnum.Association || connectionType == ConnectionTypeEnum.Composition)
+            {
+                allScopes.Add(ScopeEnum.Public);
+            }
+
             //Find unique scopes
-            var allScopes = methods.Select(m => m.Scope).ToList();
+            allScopes.AddRange(methods.Select(m => m.Scope));
             allScopes.AddRange(dataMembers.Select(dm => dm.Scope));
             allScopes = allScopes.Distinct().ToList();
 
@@ -49,7 +69,7 @@ namespace CD2C
 
             sbOutput.Append(string.Format("class {0}", className));
             
-            if (!string.IsNullOrEmpty(parentClassName))
+            if (connectionType == ConnectionTypeEnum.Inheritance && !string.IsNullOrEmpty(parentClassName))
             {
                 sbOutput.Append(string.Format(" : public {0}", parentClassName));
             }
@@ -57,6 +77,7 @@ namespace CD2C
             sbOutput.AppendLine();
             sbOutput.AppendLine("{");
 
+            var varCount = 0;
             foreach (var scope in allScopes)
             {
                 sbOutput.AppendLine(string.Format("\t{0}:", scope.ToString().ToLower()));
@@ -64,6 +85,18 @@ namespace CD2C
                 //find all members and methods of the current scope
                 var scopeDataMembers = dataMembers.Where(dm => dm.Scope == scope).ToList();
                 var scopeMethods = methods.Where(dm => dm.Scope == scope).ToList();
+
+                if (scope == ScopeEnum.Public && !string.IsNullOrEmpty(parentClassName) && (connectionType == ConnectionTypeEnum.Association || connectionType == ConnectionTypeEnum.Composition))
+                {
+                    if (connectionType == ConnectionTypeEnum.Association)
+                    {
+                        sbOutput.AppendLine(string.Format("\t\t{0} var{1};", parentClassName, ++varCount));
+                    }
+                    else if (connectionType == ConnectionTypeEnum.Composition)
+                    {
+                        sbOutput.AppendLine(string.Format("\t\t{0}[] var{1};", parentClassName, ++varCount));
+                    }
+                }
 
                 foreach (var dm in scopeDataMembers)
                 {
