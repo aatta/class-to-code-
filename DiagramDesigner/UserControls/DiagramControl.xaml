@@ -143,6 +143,12 @@
                                                     <RotateTransform x:Name="rot" />
                                                 </Path.RenderTransform>
                                             </Path>
+                                            <TextBlock x:Name="text"
+                                                    Visibility="{Binding Path=IsFullConnection, Converter={x:Static s:BoolToVisibilityConverter.Instance}}"
+                                                    Canvas.Left="{Binding EndPoint.X}"
+                                                    Canvas.Top="{Binding EndPoint.Y}"
+                                                    Text="{Binding Path=MultiplicityType, Converter={x:Static s:MultiplicityTypeConverter.Instance}}">
+                                            </TextBlock>
                                         </Canvas>
                                         <DataTemplate.Triggers>
                                             <DataTrigger Value="True"
@@ -162,6 +168,9 @@
                                                 <Setter TargetName="arrow"
                                                         Property="Margin"
                                                         Value="-15,-5,0,0" />
+                                                <Setter TargetName="text"
+                                                        Property="Margin"
+                                                        Value="-20,-20,0,0" />
                                                 <Setter TargetName="arrow"
                                                         Property="RenderTransform">
                                                     <Setter.Value>
@@ -174,6 +183,9 @@
                                                 <Setter TargetName="arrow"
                                                         Property="Margin"
                                                         Value="-5,-15,0,0" />
+                                                <Setter TargetName="text"
+                                                        Property="Margin"
+                                                        Value="-20,-20,0,0" />
                                                 <Setter TargetName="arrow"
                                                         Property="RenderTransform">
                                                     <Setter.Value>
@@ -186,6 +198,9 @@
                                                 <Setter TargetName="arrow"
                                                         Property="Margin"
                                                         Value="5,-5,0,0" />
+                                                <Setter TargetName="text"
+                                                        Property="Margin"
+                                                        Value="20,-20,0,0" />
                                                 <Setter TargetName="arrow"
                                                         Property="RenderTransform">
                                                     <Setter.Value>
@@ -198,6 +213,9 @@
                                                 <Setter TargetName="arrow"
                                                         Property="Margin"
                                                         Value="-5,10,0,0" />
+                                                <Setter TargetName="text"
+                                                        Property="Margin"
+                                                        Value="-25,20,0,0" />
                                                 <Setter TargetName="arrow"
                                                         Property="RenderTransform">
                                                     <Setter.Value>

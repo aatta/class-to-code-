@@ -88,6 +88,7 @@
     <Compile Include="AttachedProperties\ItemConnectProps.cs" />
     <Compile Include="AttachedProperties\DragAndDropProps.cs" />
     <Compile Include="AttachedProperties\SelectionProps.cs" />
+    <Compile Include="Converters\MultiplicityTypeConverter.cs" />
     <Compile Include="Helpers\ConnectorInfo.cs" />
     <Compile Include="Converters\ConnectionPathConverter.cs" />
     <Compile Include="Converters\BoolToVisibilityConverter.cs" />

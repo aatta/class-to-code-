@@ -101,6 +101,7 @@ namespace CD2C
             }
         }
 
+        static int ClassCounter = 0;
         private void Init()
         {
             visualiserService = ApplicationServicesProvider.Instance.Provider.VisualizerService;
@@ -112,7 +113,7 @@ namespace CD2C
 
             if (string.IsNullOrEmpty(ClassName))
             {
-                ClassName = "Class";
+                ClassName = string.Format("Class{0}", ++ClassCounter);
             }
 
             if (Methods == null)

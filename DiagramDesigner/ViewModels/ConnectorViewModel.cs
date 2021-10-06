@@ -16,6 +16,7 @@ namespace DiagramDesigner
         private Point endPoint;
         private Rect area;
         private ConnectionTypeEnum connectionType;
+        private MultiplicityTypeEnum multiplicityType;
 
 
         public ConnectorViewModel(int id, IDiagramViewModel parent,
@@ -40,6 +41,12 @@ namespace DiagramDesigner
                 connectionType = value;
                 NotifyChanged("ConnectionType");
             }
+        }
+        
+        public MultiplicityTypeEnum MultiplicityType
+        {
+            get { return multiplicityType; }
+            set { multiplicityType = value; NotifyChanged("MultiplicityType"); }
         }
 
         public static IPathFinder PathFinder { get; set; }
@@ -251,6 +258,8 @@ namespace DiagramDesigner
             this.Parent = sourceConnectorInfo.DataItem.Parent;
             this.SourceConnectorInfo = sourceConnectorInfo;
             this.SinkConnectorInfo = sinkConnectorInfo;
+            this.MultiplicityType = MultiplicityTypeEnum.Unspecified;
+
             PathFinder = new OrthogonalPathFinder();
         }
 

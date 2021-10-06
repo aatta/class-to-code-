@@ -1,7 +1,8 @@
 ﻿using CD2C.Common;
 using DiagramDesigner;
-using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
+using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -30,8 +31,46 @@ namespace CD2C
             //OrthogonalPathFinder is a pretty bad attempt at finding path points, it just shows you, you can swap this out with relative
             //ease if you wish just create a new IPathFinder class and pass it in right here
             ConnectorViewModel.PathFinder = new OrthogonalPathFinder();
+
+            DiagramViewModel.Items.CollectionChanged += Items_CollectionChanged;
         }
 
+        private void Items_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (e.Action == NotifyCollectionChangedAction.Add)
+            {
+                var connections = e.NewItems.OfType<ConnectorViewModel>();
+                foreach (var con in connections)
+                {
+                    con.PropertyChanged += Connection_PropertyChanged;
+                }
+            }
+            else if (e.Action == NotifyCollectionChangedAction.Remove)
+            {
+                var connections = e.OldItems.OfType<ConnectorViewModel>();
+                foreach (var con in connections)
+                {
+                    con.PropertyChanged -= Connection_PropertyChanged;
+                }
+            }
+        }
+
+        private void Connection_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            var connection = sender as ConnectorViewModel;
+
+            if (e.PropertyName == "IsSelected")
+            {
+                if (connection.IsSelected)
+                {
+                    ConnectionDesignerItemData data = new ConnectionDesignerItemData(connection);
+                    if (ApplicationServicesProvider.Instance.Provider.VisualizerService.ShowDialog(data) == true)
+                    {
+                        
+                    }
+                }
+            }
+        }
 
         public SimpleCommand DeleteSelectedItemsCommand { get; private set; }
         public SimpleCommand CreateNewDiagramCommand { get; private set; }
