@@ -1,0 +1,232 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:CD2C"
+                    xmlns:conv="clr-namespace:CD2C.Converters">
+
+
+    <!-- DataTemplate for DesignerCanvas look and feel -->
+    <DataTemplate DataType="{x:Type local:ClassDesignerItemViewModel}">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Button Grid.Row="0" Background="AliceBlue" 
+                    HorizontalContentAlignment="Center" 
+                    FontWeight="Bold" BorderThickness="5" 
+                    BorderBrush="Gray" 
+                    Command="{Binding ShowDataChangeWindowCommand}"
+                    CommandParameter="ClassName"
+                    Content="{Binding ClassName}">
+                <!--<Button.InputBindings>
+                    <MouseBinding Gesture="RightClick" 
+                                Command="{Binding ShowDataChangeWindowCommand}"
+                                CommandParameter="ClassName" />
+                </Button.InputBindings>-->
+            </Button>
+
+            <!--<Label Grid.Row="0" Background="AliceBlue" 
+                   HorizontalContentAlignment="Center" 
+                   FontWeight="Bold" BorderThickness="5" 
+                   BorderBrush="Gray" IsHitTestVisible="False">
+                Class
+            </Label>-->
+            <DataGrid HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" RowHeight="20" ColumnWidth="*"
+                Background="LightGray"  
+                AutoGenerateColumns="False" CanUserAddRows="False" BorderBrush="Gray" BorderThickness="2" IsReadOnly="True"
+                ItemsSource="{Binding DataMembers}" Height="200" Width="150" RowHeaderWidth="0" 
+                ColumnHeaderHeight="25" CanUserReorderColumns="False"
+                EnableRowVirtualization="false" EnableColumnVirtualization="false" 
+                Grid.Row="2" IsHitTestVisible="False">
+                <!--<DataGrid.InputBindings>
+                    <MouseBinding Gesture="RightClick"
+                                Command="{Binding ShowDataChangeWindowCommand}"
+                                CommandParameter="ClassProps" />
+                </DataGrid.InputBindings>-->
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Data Members" Binding="{Binding Name}" Width="*" />
+                </DataGrid.Columns>
+            </DataGrid>
+            <DataGrid HorizontalAlignment="Left" Margin="0,0,0,0"   
+                Name="methods" VerticalAlignment="Top" RowHeight="20" ColumnWidth="*"
+                Background="LightGray"  
+                AutoGenerateColumns="False" CanUserAddRows="False" BorderBrush="Gray" BorderThickness="2" IsReadOnly="True"
+                ItemsSource="{Binding Methods}" Height="200" Width="150" RowHeaderWidth="0" 
+                ColumnHeaderHeight="25" CanUserReorderColumns="False"
+                EnableRowVirtualization="false" EnableColumnVirtualization="false" 
+                Grid.Row="1" IsHitTestVisible="False">
+                <!--<DataGrid.InputBindings>
+                    <MouseBinding Gesture="RightClick" 
+                                Command="{Binding ShowDataChangeWindowCommand}"
+                                CommandParameter="ClassProps" />
+                </DataGrid.InputBindings>-->
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Methods" Binding="{Binding Name}" Width="*" />
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+        
+        <!--<Grid>
+            <Image IsHitTestVisible="False"
+                    Stretch="Fill"
+                    Source="../../Images/icon_class.png"
+                    Tag="class" />
+            <Button HorizontalAlignment="Right"
+                    VerticalAlignment="Bottom"
+                    Margin="5"
+                    Template="{StaticResource infoButtonTemplate}"
+                    Command="{Binding ShowDataChangeWindowCommand}" />
+        </Grid>-->
+    </DataTemplate>
+
+    <!-- DataTemplate for Popup look and feel -->
+    <DataTemplate DataType="{x:Type local:ClassDesignerItemData}">
+        <Grid Margin="0,5,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="25"></RowDefinition>
+                <RowDefinition Height="25"></RowDefinition>
+                <RowDefinition Height="200*"></RowDefinition>
+                <RowDefinition Height="25"></RowDefinition>
+                <RowDefinition Height="200*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="80"/>
+                    <ColumnDefinition Width="120*"/>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="0" Content="Class Name: " HorizontalAlignment="Left"/>
+                <TextBox Grid.Column="1" HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding ClassName}" MinWidth="120"/>
+            </Grid>
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="0" Content="Data Members" FontWeight="Bold" HorizontalAlignment="Left"></Label>
+                <Button Grid.Column="1" Content="New Data Member" HorizontalAlignment="Right" Margin="0,0,10,0"
+                        Command="{Binding ShowDataChangeWindowCommand}"
+                        CommandParameter="AddDataMember"/>
+            </Grid>
+            <DataGrid Grid.Row="2" Margin="5,10,10,10" AutoGenerateColumns="False" CanUserAddRows="False" ItemsSource="{Binding DataMembers}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Scope" Binding="{Binding Scope}" Width="150" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Type" Binding="{Binding Type, Converter={conv:TypeNameConverter}}" Width="150" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="150" />
+
+                </DataGrid.Columns>
+            </DataGrid>
+            <Grid Grid.Row="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="0" Content="Methods" FontWeight="Bold" HorizontalAlignment="Left"></Label>
+                <Button Grid.Column="1" Content="New Method" HorizontalAlignment="Right" Width="75" Margin="0,0,10,0"
+                        Command="{Binding ShowDataChangeWindowCommand}"
+                        CommandParameter="AddMethod"/>
+            </Grid>
+            <DataGrid Grid.Row="4" Margin="5,10,10,10" AutoGenerateColumns="False" CanUserAddRows="False" ItemsSource="{Binding Methods}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Scope" Binding="{Binding Scope}" Width="150" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Return Type" Binding="{Binding ReturnType, Converter={conv:TypeNameConverter}}" Width="150" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="150" />
+                    <DataGridTextColumn Header="Input Parameters" Binding="{Binding InputParameters, Converter={conv:InputParameterConverter}}" Width="150" IsReadOnly="True"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type local:DataMemberDesignerItemData}">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Label Grid.Row="0" Grid.Column="0" Content="Scope" HorizontalAlignment="Left" Margin="10,10,10,10" VerticalAlignment="Top"/>
+            <ComboBox Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" Margin="0,10,10,10" VerticalAlignment="Top" Width="120" ItemsSource="{Binding ScopeData}" DisplayMemberPath="Text" SelectedValuePath="Id" SelectedValue="{Binding DataMemberModel.Scope}"/>
+
+            <Label Grid.Row="1" Grid.Column="0" Content="Type" HorizontalAlignment="Left" Margin="10,10,10,10" VerticalAlignment="Top"/>
+            <ComboBox Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" Margin="0,10,10,10" VerticalAlignment="Top" Width="120" ItemsSource="{Binding TypeData}" DisplayMemberPath="Text" SelectedValuePath="Id" SelectedValue="{Binding DataMemberModel.Type}"/>
+
+            <Label Grid.Row="2" Grid.Column="0" Content="Name" HorizontalAlignment="Left" Margin="10,10,10,10" VerticalAlignment="Top"/>
+            <TextBox Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Height="25" Text="{Binding DataMemberModel.Name}"></TextBox>
+        </Grid>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type local:MethodDesignerItemData}">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Label Grid.Row="0" Grid.Column="0" Content="Scope" HorizontalAlignment="Left" Margin="10,10,10,10" VerticalAlignment="Top"/>
+            <ComboBox Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" Margin="10,10,10,10" VerticalAlignment="Top" Width="120" ItemsSource="{Binding ScopeData}" DisplayMemberPath="Text" SelectedValuePath="Id" SelectedValue="{Binding MethodModel.Scope}"/>
+
+            <Label Grid.Row="1" Grid.Column="0" Content="Return Type" HorizontalAlignment="Left" Margin="10,10,10,10" VerticalAlignment="Top"/>
+            <ComboBox Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" Margin="10,10,10,10" VerticalAlignment="Top" Width="120" ItemsSource="{Binding TypeData}" DisplayMemberPath="Text" SelectedValuePath="Id" SelectedValue="{Binding MethodModel.ReturnType}"/>
+
+            <Label Grid.Row="2" Grid.Column="0" Content="Name" HorizontalAlignment="Left" Margin="10,10,10,10" VerticalAlignment="Top"/>
+            <TextBox Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,10,10" Width="120" Height="25" Text="{Binding MethodModel.Name}"></TextBox>
+            <Grid Grid.Row="3" Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Button Grid.Row="0" Content="Add New Parameter" HorizontalAlignment="Right" Margin="0,0,10,0" VerticalAlignment="Bottom" Width="130" Command="{Binding ShowDataChangeWindowCommand}"/>
+                <DataGrid Grid.Row="1" Margin="10,10,10,10" AutoGenerateColumns="False" CanUserAddRows="False" ItemsSource="{Binding MethodModel.InputParameters}">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Type" Binding="{Binding InputType, Converter={conv:TypeNameConverter}}" Width="150" IsReadOnly="True"/>
+                        <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="200" />
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+        </Grid>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type local:InputParameterDesignerItemData}">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Label Grid.Row="0" Grid.Column="0" Content="Type" HorizontalAlignment="Left" Margin="10,10,10,10" VerticalAlignment="Top"/>
+            <ComboBox Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" Margin="0,10,10,10" VerticalAlignment="Top" Width="120" ItemsSource="{Binding TypeData}" DisplayMemberPath="Text" SelectedValuePath="Id" SelectedValue="{Binding InputParameterModel.InputType}"/>
+
+            <Label Grid.Row="1" Grid.Column="0" Content="Name" HorizontalAlignment="Left" Margin="10,10,10,10" VerticalAlignment="Top"/>
+            <TextBox Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top" Width="120" Height="25" Text="{Binding InputParameterModel.Name}"></TextBox>
+        </Grid>
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type local:ConnectionDesignerItemData}">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Label Grid.Row="0" Grid.Column="0" Content="Aggregation" HorizontalAlignment="Left" Margin="10,10,10,10" VerticalAlignment="Top"/>
+            <ComboBox Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" Margin="0,10,10,10" VerticalAlignment="Top" Width="120" ItemsSource="{Binding ConnectionTypeData}" DisplayMemberPath="Text" SelectedValuePath="Id" SelectedValue="{Binding ConnectorView.ConnectionType}"/>
+
+            <Label Grid.Row="1" Grid.Column="0" Content="Multiplicity" HorizontalAlignment="Left" Margin="10,10,10,10" VerticalAlignment="Top"/>
+            <ComboBox Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" Margin="0,10,10,10" VerticalAlignment="Top" Width="120" ItemsSource="{Binding MultiplicityTypeData}" DisplayMemberPath="Text" SelectedValuePath="Id" SelectedValue="{Binding ConnectorView.MultiplicityType}"/>
+        </Grid>
+    </DataTemplate>
+
+</ResourceDictionary>
